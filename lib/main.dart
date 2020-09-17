@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: "Bùlapp",
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: UseFirebase(
