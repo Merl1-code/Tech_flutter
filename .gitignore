@@ -25,3 +25,5 @@ doc/api/
 
 # Avoid committing IDE file
 .idea/
+.flutter-plugins
+.flutter-plugins-dependencies
