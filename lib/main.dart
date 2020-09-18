@@ -27,15 +27,15 @@ class App extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: UseFirebase(
-        loading: Text("loading..."),
-        error: Text("firebase error"),
+        loading: const Text('loading...'),
+        error: const Text('firebase error'),
         success: Builder(
           builder: (BuildContext context) {
             asyncAuthTest();
 
             return AuthOnly(
               child: Login(),
-              redirect: Text("Not logged"),
+              redirect: const Text('Not logged'),
             );
           },
         ),
