@@ -17,18 +17,18 @@ class UseFirebase extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: _initialization,
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
-            print("error");
+            print('error');
             return error;
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
-            print("firebase connection success");
+            print('firebase connection success');
             return success;
           }
 
-          print("firebase loading");
+          print('firebase loading');
           return loading;
         });
   }

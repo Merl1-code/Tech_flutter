@@ -14,7 +14,7 @@ class _LoginState extends State<Login> {
         height: double.infinity,
         child: SafeArea(
             child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(
                 horizontal: 40.0,
                 vertical: 50.0,
@@ -32,7 +32,7 @@ class _LoginState extends State<Login> {
                     backgroundColor: null,
                   ),
                   const SizedBox(height: 50.0),
-                  const Text("Sign In",
+                  const Text('Sign In',
                     style: TextStyle(fontSize: 35,),
                   ),
                   const SizedBox(height: 70.0),
@@ -40,7 +40,7 @@ class _LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Email",
+                        const Text('Email',
                           style: TextStyle(fontSize: 20.0,),
                         ),
                         const SizedBox(height: 10.0),
@@ -75,7 +75,7 @@ class _LoginState extends State<Login> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Password",
+                        const Text('Password',
                           style: TextStyle(fontSize: 20.0,),
                         ),
                         const SizedBox(height: 10.0),

@@ -11,14 +11,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Bùlapp",
+      title: 'Bùlapp',
       theme: ThemeData(
         primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: UseFirebase(
-        loading: Text("loading..."),
-        error: Text("firebase error"),
+        loading: const Text('loading...'),
+        error: const Text('firebase error'),
         success: Login(),
       ),
     );
