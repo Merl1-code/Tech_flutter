@@ -1,0 +1,40 @@
+Ces règles ne sont pas fixées dans le marbre.
+Le but est simplement d'harmoniser le code et de
+nous faciliter le travaile quand il faudra repasser
+sur le code.
+
+Ajoute ce qui te passes par la tête. Fais moi un retour si tu n'est pas dac avec qqchose
+
+fichiers/dossiers
+    -snake_case
+    -dossiers "container" au pluriel
+        ex: screens
+            components
+            buttons
+            ...
+
+Imports
+    -les imports doivent être triés
+        librairies externes en premier
+        code local en second
+
+    -regroupés par corespondance de dossier
+        import 'pack/icon/a';
+        import 'pack/screen/test';
+        import 'autre/icon/a'
+        import 'pack/icon/b'; 
+        -> incorrect
+
+        import 'pack/icon/a';
+        import 'pack/icon/b';  
+        import 'pack/screen/test';
+        import 'autre/icon/a'
+        -> correct
+
+Components
+mieux vaut trop wrapper que pas assez
+ex:
+    wrapper de boutton uniquement pour le style et les marges
+    -> ok
+
+le code est mieux séparé et donc plus lisible
