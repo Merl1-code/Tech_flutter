@@ -1,6 +1,7 @@
 import 'package:Tech_flutter/screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/Firebase/components/useFirebase.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(App());
@@ -9,7 +10,10 @@ void main() {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+    return  MaterialApp(
       title: 'Bùlapp',
       theme: ThemeData(
         primarySwatch: Colors.purple,
