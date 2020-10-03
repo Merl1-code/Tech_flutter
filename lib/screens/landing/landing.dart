@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/login/login.dart';
+import 'package:Tech_flutter/components/button.dart';
 
 class Landing extends StatefulWidget {
   @override
@@ -49,58 +50,28 @@ class LandingState extends State<Landing> {
                   ),
                 ),
                 const SizedBox(height: 60.0),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  child: RaisedButton(
-                    elevation: 0,
-                    padding: const EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0)),
-                    onPressed: () {
-                      Navigator.push<MaterialPageRoute>(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => Login()),
-                      );
-                    },
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          height: 1),
-                    ),
-                    color: const Color(0xFFB283FC),
-                  ),
+                Button(
+                  'Sign in',
+                  onPressed: () {
+                    Navigator.push<MaterialPageRoute>(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Login()),
+                    );
+                  },
+                  backgroundColor: const Color(0xFFB283FC),
                 ),
                 const SizedBox(height: 25.0),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  child: RaisedButton(
-                    elevation: 0,
-                    padding: const EdgeInsets.all(15.0),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0)),
-                    onPressed: () {
-                      Navigator.push<MaterialPageRoute>(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => Register()),
-                      );
-                    },
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          height: 1),
-                    ),
-                    color: const Color(0xFFC2AEE2),
-                  ),
+                Button(
+                  'Sign up',
+                  onPressed: () {
+                    Navigator.push<MaterialPageRoute>(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Register()),
+                    );
+                  },
+                  backgroundColor: const Color(0xFFC2AEE2),
                 ),
               ],
             ),
