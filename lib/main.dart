@@ -1,9 +1,7 @@
-import 'package:Tech_flutter/screens/Landing/landing.dart';
-import 'package:Tech_flutter/screens/Login/login.dart';
-import 'package:Tech_flutter/screens/Register/register.dart';
 import 'package:flutter/material.dart';
-import 'package:Tech_flutter/Firebase/components/useFirebase.dart';
 import 'package:flutter/services.dart';
+import 'package:Tech_flutter/screens/landing/landing.dart';
+import 'package:Tech_flutter/firebase/components/use_firebase.dart';
 
 void main() {
   runApp(App());
@@ -15,7 +13,7 @@ class App extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
-    return  MaterialApp(
+    return MaterialApp(
       title: 'Bùlapp',
       theme: ThemeData(
         primarySwatch: Colors.purple,

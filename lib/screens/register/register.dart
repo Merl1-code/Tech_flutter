@@ -1,9 +1,9 @@
-import 'package:Tech_flutter/Firebase/utils/credentialResult.dart';
-import 'package:Tech_flutter/screens/Login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Tech_flutter/Firebase/utils/register.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:Tech_flutter/screens/login/login.dart';
+import 'package:Tech_flutter/firebase/utils/credential_result.dart';
+import 'package:Tech_flutter/firebase/utils/register.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -13,13 +13,12 @@ class Register extends StatefulWidget {
 }
 
 Future<String> asyncRegister(String email, String password) async {
-  final Result res = await createUserWithEmailAndPassword(
-      email: email, password: password);
+  final Result res =
+      await createUserWithEmailAndPassword(email: email, password: password);
   return res.message;
 }
 
 class RegisterState extends State<Register> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
@@ -52,24 +51,28 @@ class RegisterState extends State<Register> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget> [
+              children: <Widget>[
                 Container(
                   height: 200,
                   width: double.infinity,
-                  child: SvgPicture.asset('assets/images/illustration_inscription.svg',),
+                  child: SvgPicture.asset(
+                    'assets/images/illustration_inscription.svg',
+                  ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 50.0
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 50.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget> [
+                    children: <Widget>[
                       const SizedBox(height: 20.0),
                       const FittedBox(
-                        child: Text('Register',
-                          style: TextStyle(fontFamily: 'Adlery Pro', fontSize: 50, color: Color(0xFFB283FC)),
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                              fontFamily: 'Adlery Pro',
+                              fontSize: 50,
+                              color: Color(0xFFB283FC)),
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -77,7 +80,7 @@ class RegisterState extends State<Register> {
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget> [
+                          children: <Widget>[
                             Container(
                               child: TextFormField(
                                 controller: emailController,
@@ -87,14 +90,18 @@ class RegisterState extends State<Register> {
                                     return 'Please enter some text';
                                   }
                                   return null;
-                                  },
+                                },
                                 keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    height: 1.5,
+                                    fontSize: 16),
                                 decoration: InputDecoration(
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 1.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
@@ -104,7 +111,8 @@ class RegisterState extends State<Register> {
                                     focusedBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFFB283FC), width: 2.0),
                                     ),
                                     fillColor: const Color(0xFFC2AEE2),
                                     filled: true,
@@ -114,8 +122,10 @@ class RegisterState extends State<Register> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Email',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 1.5)
-                                ),
+                                    hintStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        height: 1.5)),
                               ),
                               height: 50,
                             ),
@@ -131,12 +141,16 @@ class RegisterState extends State<Register> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    height: 1.5,
+                                    fontSize: 16),
                                 decoration: InputDecoration(
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 1.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
@@ -146,7 +160,8 @@ class RegisterState extends State<Register> {
                                     focusedBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFFB283FC), width: 2.0),
                                     ),
                                     fillColor: const Color(0xFFC2AEE2),
                                     filled: true,
@@ -156,8 +171,10 @@ class RegisterState extends State<Register> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Confirm Email',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
-                                ),
+                                    hintStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        height: 2.5)),
                               ),
                               height: 50,
                             ),
@@ -172,26 +189,31 @@ class RegisterState extends State<Register> {
                                     return 'Please enter some text';
                                   }
                                   return null;
-                                  },
+                                },
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: true,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    height: 1.5,
+                                    fontSize: 16),
                                 decoration: InputDecoration(
-
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 1.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Colors.grey, width: 0.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.grey, width: 0.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFFB283FC), width: 2.0),
                                     ),
                                     fillColor: const Color(0xFFC2AEE2),
                                     filled: true,
@@ -201,8 +223,10 @@ class RegisterState extends State<Register> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Password',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
-                                ),
+                                    hintStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        height: 2.5)),
                               ),
                             ),
                             const SizedBox(height: 15.0),
@@ -219,23 +243,28 @@ class RegisterState extends State<Register> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: true,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    height: 1.5,
+                                    fontSize: 16),
                                 decoration: InputDecoration(
-
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.red, width: 1.0),
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Colors.grey, width: 0.0),
+                                      borderSide: const BorderSide(
+                                          color: Colors.grey, width: 0.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
                                       borderRadius: BorderRadius.circular(50),
-                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                      borderSide: const BorderSide(
+                                          color: Color(0xFFB283FC), width: 2.0),
                                     ),
                                     fillColor: const Color(0xFFC2AEE2),
                                     filled: true,
@@ -245,8 +274,10 @@ class RegisterState extends State<Register> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Confirm password',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
-                                ),
+                                    hintStyle: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        height: 2.5)),
                               ),
                             ),
                             const SizedBox(height: 15.0),
@@ -256,19 +287,32 @@ class RegisterState extends State<Register> {
                               child: RaisedButton(
                                 elevation: 0,
                                 padding: const EdgeInsets.all(15.0),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(50.0)),
                                 onPressed: () {
                                   // Validate returns true if the form is valid, or false
                                   // otherwise.
-                                  if (_formKey.currentState.validate() != null && emailController.text == verifEmailController.text && passwordController.text == verifPasswordController.text) {
-                                    asyncRegister(emailController.text, passwordController.text);
+                                  if (_formKey.currentState.validate() !=
+                                          null &&
+                                      emailController.text ==
+                                          verifEmailController.text &&
+                                      passwordController.text ==
+                                          verifPasswordController.text) {
+                                    asyncRegister(emailController.text,
+                                        passwordController.text);
                                   }
-                                  },
-                                child: const Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, height: 1),),
+                                },
+                                child: const Text(
+                                  'Sign up',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      height: 1),
+                                ),
                                 color: const Color(0xFFB283FC),
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -276,20 +320,24 @@ class RegisterState extends State<Register> {
                         height: 60,
                         alignment: Alignment.centerRight,
                         child: FlatButton(
-                          child: const Text('sign in instead',
+                          child: const Text(
+                            'sign in instead',
                             style: TextStyle(
                               color: Color(0xFFB283FC),
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushReplacement<MaterialPageRoute, dynamic>(
+                            Navigator.pushReplacement<MaterialPageRoute,
+                                dynamic>(
                               context,
-                              MaterialPageRoute(builder: (BuildContext context) => Login()),
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) => Login()),
                             );
-                            },
+                          },
                         ),
                       )
-                    ],),
+                    ],
+                  ),
                 )
               ],
             ),
