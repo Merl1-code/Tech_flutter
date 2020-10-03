@@ -11,9 +11,9 @@ class SecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = Colors.white;
-    final Color backgroundColor =
-        const Color(0xFFC2AEE2); //Theme.of(context).colors.main;
+    const Color textColor = Colors.white;
+    const Color backgroundColor =
+        Color(0xFFC2AEE2); //Theme.of(context).colors.main;
 
     return Button(
       text: text,

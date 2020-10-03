@@ -53,9 +53,9 @@ class LandingState extends State<Landing> {
                 MainButton(
                   text: 'Sign in',
                   onPressed: () {
-                    Navigator.push<MaterialPageRoute>(
+                    Navigator.push<MaterialPageRoute<dynamic>>(
                       context,
-                      MaterialPageRoute(
+                      MaterialPageRoute<MaterialPageRoute<dynamic>>(
                           builder: (BuildContext context) => Login()),
                     );
                   },
@@ -64,9 +64,9 @@ class LandingState extends State<Landing> {
                 SecondaryButton(
                   text: 'Sign up',
                   onPressed: () {
-                    Navigator.push<MaterialPageRoute>(
+                    Navigator.push<MaterialPageRoute<dynamic>>(
                       context,
-                      MaterialPageRoute(
+                      MaterialPageRoute<MaterialPageRoute<dynamic>>(
                           builder: (BuildContext context) => Register()),
                     );
                   },
