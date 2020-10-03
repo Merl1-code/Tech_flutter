@@ -51,7 +51,7 @@ class LandingState extends State<Landing> {
                 ),
                 const SizedBox(height: 60.0),
                 Button(
-                  'Sign in',
+                  text: 'Sign in',
                   onPressed: () {
                     Navigator.push<MaterialPageRoute>(
                       context,
@@ -63,7 +63,7 @@ class LandingState extends State<Landing> {
                 ),
                 const SizedBox(height: 25.0),
                 Button(
-                  'Sign up',
+                  text: 'Sign up',
                   onPressed: () {
                     Navigator.push<MaterialPageRoute>(
                       context,
