@@ -46,7 +46,7 @@ class LandingState extends State<Landing> {
                   const SizedBox(height: 60.0),
                   Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 50,
                     child: RaisedButton(
                       elevation: 0,
                       padding: const EdgeInsets.all(15.0),
@@ -57,14 +57,14 @@ class LandingState extends State<Landing> {
                           MaterialPageRoute(builder: (BuildContext context) => Login()),
                         );
                       },
-                      child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                      child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, height: 1),),
                       color: const Color(0xFFB283FC),
                     ),
                   ),
                   const SizedBox(height: 25.0),
                   Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 50,
                     child: RaisedButton(
                       elevation: 0,
                       padding: const EdgeInsets.all(15.0),
@@ -75,7 +75,7 @@ class LandingState extends State<Landing> {
                           MaterialPageRoute(builder: (BuildContext context) => Register()),
                         );
                       },
-                      child: const Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                      child: const Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, height: 1),),
                       color: const Color(0xFFC2AEE2),
                     ),
                   ),

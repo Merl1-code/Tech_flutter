@@ -77,7 +77,6 @@ class LoginState extends State<Login> {
                           children: <Widget> [
                             Container(
                               child: TextFormField(
-
                                 controller: emailController,
                                 cursorColor: Colors.white,
                                 validator: (String value) {
@@ -87,7 +86,7 @@ class LoginState extends State<Login> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                style: const TextStyle(color: Colors.white, height: 2.5, fontSize: 16),
                                 decoration: InputDecoration(
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
@@ -112,14 +111,14 @@ class LoginState extends State<Login> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Email',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 1.5)
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
                                 ),
                               ),
-                              height: 65,
+                              height: 50,
                             ),
-                            const SizedBox(height: 25.0),
+                            const SizedBox(height: 20.0),
                             Container(
-                              height: 60,
+                              height: 50,
                               child: TextFormField(
                                 controller: passwordController,
                                 cursorColor: Colors.white,
@@ -131,7 +130,7 @@ class LoginState extends State<Login> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: true,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                style: const TextStyle(color: Colors.white, height: 2.5, fontSize: 16),
                                 decoration: InputDecoration(
 
                                     focusedErrorBorder: OutlineInputBorder(
@@ -157,14 +156,14 @@ class LoginState extends State<Login> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Password',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 1.5)
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 25.0),
+                            const SizedBox(height: 20.0),
                             Container(
                               width: double.infinity,
-                              height: 60,
+                              height: 50,
                               child: RaisedButton(
                                 elevation: 0,
                                 padding: const EdgeInsets.all(15.0),
@@ -176,7 +175,7 @@ class LoginState extends State<Login> {
                                     asyncLogin(emailController.text, passwordController.text);
                                   }
                                 },
-                                child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                                child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, height: 1),),
                                 color: const Color(0xFFB283FC),
                               ),
                             ),

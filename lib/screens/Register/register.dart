@@ -1,7 +1,9 @@
 import 'package:Tech_flutter/Firebase/utils/credentialResult.dart';
+import 'package:Tech_flutter/screens/Login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/Firebase/utils/register.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -13,8 +15,6 @@ class Register extends StatefulWidget {
 Future<String> asyncRegister(String email, String password) async {
   final Result res = await createUserWithEmailAndPassword(
       email: email, password: password);
-  print(res.message);
-  print('oui');
   return res.message;
 }
 
@@ -24,154 +24,276 @@ class RegisterState extends State<Register> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController verifEmailController = TextEditingController();
+  final TextEditingController verifPasswordController = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     emailController.dispose();
     passwordController.dispose();
+    verifEmailController.dispose();
+    verifPasswordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple.shade50,
+      backgroundColor: const Color(0xFFE6DAF9),
       body: Container(
         height: double.infinity,
         child: SafeArea(
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 40.0,
-                vertical: 80.0,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget> [
-                  const Text("Bù Lâ'pp",
-                    style: TextStyle(fontFamily: 'Garineldo2', fontSize: 80,),
-                  ),
-                  CircleAvatar(
-                    radius: 50,
-                    child: Image.network('https://img.icons8.com/plasticine/2x/idea.png', ),
-                    backgroundColor: null,
-                  ),
-                  const SizedBox(height: 70.0),
-                  Form(
-                    key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget> [
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget> [
-                                const Text('Email',
-                                  style: TextStyle(fontSize: 20.0,),
-                                ),
-                                const SizedBox(height: 10.0),
-
-                                TextFormField(
-
-                                  controller: emailController,
-                                  cursorColor: Colors.white,
-                                  validator: (String value) {
-                                    if (value.isEmpty) {
-                                      return 'Please enter some text';
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.emailAddress,
-                                  style: const TextStyle(color: Colors.white, height: 2.0),
-                                  decoration: InputDecoration(
-                                      fillColor: Colors.purple,
-                                      filled: true,
-                                      border:OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(20)
-                                      ),
-                                      prefixIcon: const Icon(Icons.mail_outline,
-                                        color: Colors.white,
-                                      ),
-                                      hintText: 'Enter your email',
-                                      hintStyle: const TextStyle(color: Color.fromARGB(150, 255, 255, 255))
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 30.0),
-                          Container(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget> [
-                                const Text('Password',
-                                  style: TextStyle(fontSize: 20.0,),
-                                ),
-                                const SizedBox(height: 10.0),
-                                TextFormField(
-                                  controller: passwordController,
-                                  cursorColor: Colors.white,
-                                  validator: (String value) {
-                                    if (value.isEmpty) {
-                                      return 'Please enter some text';
-                                    }
-                                    return null;
-                                  },
-                                  keyboardType: TextInputType.visiblePassword,
-                                  obscureText: true,
-                                  style: const TextStyle(color: Colors.white, height: 2.0),
-                                  decoration: InputDecoration(
-                                      fillColor: Colors.purple,
-                                      filled: true,
-                                      border:OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(20)
-                                      ),
-                                      prefixIcon: const Icon(Icons.lock,
-                                        color: Colors.white,
-                                      ),
-                                      hintText: 'Enter your password',
-                                      hintStyle: const TextStyle(color: Color.fromARGB(150, 255, 255, 255))
-                                  ),
-                                ),
-
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 30.0),
-                          RaisedButton(
-
-                            elevation: 5.0,
-                            padding: const EdgeInsets.all(15.0),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                            onPressed: () {
-                              // Validate returns true if the form is valid, or false
-                              // otherwise.
-                              if (_formKey.currentState.validate() != null) {
-                                asyncRegister(emailController.text, passwordController.text);
-                              }
-                            },
-                            child: const Text('Register', style: TextStyle(color: Colors.white),),
-                            color: Colors.purple.shade800,
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(
+              vertical: 20.0,
             ),
-        ),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color> [
-              Color(0xFFFCF0FF),
-              Color(0xFFF5CFFF),
-            ],
-          )
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget> [
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  child: SvgPicture.asset('assets/images/illustration_inscription.svg',),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 50.0
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget> [
+                      const SizedBox(height: 20.0),
+                      const FittedBox(
+                        child: Text('Register',
+                          style: TextStyle(fontFamily: 'Adlery Pro', fontSize: 50, color: Color(0xFFB283FC)),
+                        ),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget> [
+                            Container(
+                              child: TextFormField(
+                                controller: emailController,
+                                cursorColor: Colors.white,
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                  },
+                                keyboardType: TextInputType.emailAddress,
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                decoration: InputDecoration(
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                    ),
+                                    fillColor: const Color(0xFFC2AEE2),
+                                    filled: true,
+                                    enabledBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'Email',
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 1.5)
+                                ),
+                              ),
+                              height: 50,
+                            ),
+                            const SizedBox(height: 15.0),
+                            Container(
+                              child: TextFormField(
+                                controller: verifEmailController,
+                                cursorColor: Colors.white,
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                                keyboardType: TextInputType.emailAddress,
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                decoration: InputDecoration(
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                    ),
+                                    fillColor: const Color(0xFFC2AEE2),
+                                    filled: true,
+                                    enabledBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'Confirm Email',
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
+                                ),
+                              ),
+                              height: 50,
+                            ),
+                            const SizedBox(height: 15.0),
+                            Container(
+                              height: 50,
+                              child: TextFormField(
+                                controller: passwordController,
+                                cursorColor: Colors.white,
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                  },
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                decoration: InputDecoration(
+
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Colors.grey, width: 0.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                    ),
+                                    fillColor: const Color(0xFFC2AEE2),
+                                    filled: true,
+                                    enabledBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'Password',
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 15.0),
+                            Container(
+                              height: 50,
+                              child: TextFormField(
+                                controller: verifPasswordController,
+                                cursorColor: Colors.white,
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                                keyboardType: TextInputType.visiblePassword,
+                                obscureText: true,
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
+                                decoration: InputDecoration(
+
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Colors.red, width: 1.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Colors.grey, width: 0.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: const BorderSide(color: Color(0xFFB283FC), width: 2.0),
+                                    ),
+                                    fillColor: const Color(0xFFC2AEE2),
+                                    filled: true,
+                                    enabledBorder: OutlineInputBorder(
+                                      // width: 0.0 produces a thin "hairline" border
+                                      borderRadius: BorderRadius.circular(50),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    hintText: 'Confirm password',
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 2.5)
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 15.0),
+                            Container(
+                              width: double.infinity,
+                              height: 50,
+                              child: RaisedButton(
+                                elevation: 0,
+                                padding: const EdgeInsets.all(15.0),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+                                onPressed: () {
+                                  // Validate returns true if the form is valid, or false
+                                  // otherwise.
+                                  if (_formKey.currentState.validate() != null && emailController.text == verifEmailController.text && passwordController.text == verifPasswordController.text) {
+                                    asyncRegister(emailController.text, passwordController.text);
+                                  }
+                                  },
+                                child: const Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, height: 1),),
+                                color: const Color(0xFFB283FC),
+                              ),
+                            ),
+
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 60,
+                        alignment: Alignment.centerRight,
+                        child: FlatButton(
+                          child: const Text('sign in instead',
+                            style: TextStyle(
+                              color: Color(0xFFB283FC),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push<MaterialPageRoute>(
+                              context,
+                              MaterialPageRoute(builder: (BuildContext context) => Login()),
+                            );
+                            },
+                        ),
+                      )
+                    ],),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
