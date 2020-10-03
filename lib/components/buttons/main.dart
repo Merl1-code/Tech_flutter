@@ -12,7 +12,8 @@ class MainButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color textColor = Colors.white;
-    final Color backgroundColor = Colors.black; //Theme.of(context).colors.main;
+    final Color backgroundColor =
+        Color(0xFFB283FC); //Theme.of(context).colors.main;
 
     return Button(
       text: text,

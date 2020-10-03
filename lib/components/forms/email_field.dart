@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'flatTextField.dart';
+import 'flat_text_field.dart';
 
 String _defaultEmailValidator(String value) {
   if (value.isEmpty) {

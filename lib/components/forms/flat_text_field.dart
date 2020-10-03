@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 //shape
-const double HEIGHT = 50;
+const double PADDING = 16;
 const double BORDER_WIDTH = 2;
 const double BORDER_RADIUS = 50;
 
 //text
-const double TEXT_HEIGHT = 1.5;
+const double TEXT_HEIGHT = 1;
 const double FONTSIZE = 16;
 
 class FlatTextField extends StatelessWidget {
@@ -42,55 +42,53 @@ class FlatTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: HEIGHT,
-      child: TextFormField(
-        enabled: enabled,
-        obscureText: obscureText,
-        controller: controller,
-        cursorColor: Colors.white,
-        validator: validator,
-        keyboardType: keyboardType,
-        style: TextStyle(
-          color: textColor,
-          height: TEXT_HEIGHT,
-          fontSize: FONTSIZE,
-        ),
-        decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(BORDER_RADIUS),
-              borderSide: BorderSide(
-                color: focusColor,
-                width: BORDER_WIDTH,
-              ),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(BORDER_RADIUS),
-              borderSide: BorderSide(
-                color: errorColor,
-                width: BORDER_WIDTH,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(BORDER_RADIUS),
-              borderSide: BorderSide(
-                color: errorColor,
-                width: BORDER_WIDTH,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(BORDER_RADIUS),
-              borderSide: BorderSide.none,
-            ),
-            fillColor: backgroundColor,
-            filled: true,
-            hintText: hintText,
-            hintStyle: TextStyle(
-              color: textColor,
-              height: TEXT_HEIGHT,
-              fontSize: FONTSIZE,
-            )),
+    return TextFormField(
+      enabled: enabled,
+      obscureText: obscureText,
+      controller: controller,
+      cursorColor: Colors.white,
+      validator: validator,
+      keyboardType: keyboardType,
+      style: TextStyle(
+        color: textColor,
+        height: TEXT_HEIGHT,
+        fontSize: FONTSIZE,
       ),
+      decoration: InputDecoration(
+          contentPadding: const EdgeInsets.all(PADDING),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(BORDER_RADIUS),
+            borderSide: BorderSide(
+              color: focusColor,
+              width: BORDER_WIDTH,
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(BORDER_RADIUS),
+            borderSide: BorderSide(
+              color: errorColor,
+              width: BORDER_WIDTH,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(BORDER_RADIUS),
+            borderSide: BorderSide(
+              color: errorColor,
+              width: BORDER_WIDTH,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(BORDER_RADIUS),
+            borderSide: BorderSide.none,
+          ),
+          fillColor: backgroundColor,
+          filled: true,
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: textColor,
+            height: TEXT_HEIGHT,
+            fontSize: FONTSIZE,
+          )),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-const double HEIGHT = 50;
 const double ELEVATION = 0;
 const double PADDING = 15;
 const double BORDER_RADIUS = 50;
@@ -25,7 +24,6 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: HEIGHT,
       child: RaisedButton(
         elevation: ELEVATION,
         padding: const EdgeInsets.all(PADDING),
