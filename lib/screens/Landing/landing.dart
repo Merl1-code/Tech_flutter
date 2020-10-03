@@ -25,7 +25,7 @@ class LandingState extends State<Landing> {
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.symmetric(
                 horizontal: 50.0,
-                vertical: 80.0,
+                vertical: 30.0,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +46,7 @@ class LandingState extends State<Landing> {
                   const SizedBox(height: 60.0),
                   Container(
                     width: double.infinity,
-                    height: 70,
+                    height: 60,
                     child: RaisedButton(
                       elevation: 0,
                       padding: const EdgeInsets.all(15.0),
@@ -57,14 +57,14 @@ class LandingState extends State<Landing> {
                           MaterialPageRoute(builder: (BuildContext context) => Login()),
                         );
                       },
-                      child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),),
+                      child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
                       color: const Color(0xFFB283FC),
                     ),
                   ),
                   const SizedBox(height: 25.0),
                   Container(
                     width: double.infinity,
-                    height: 70,
+                    height: 60,
                     child: RaisedButton(
                       elevation: 0,
                       padding: const EdgeInsets.all(15.0),
@@ -75,7 +75,7 @@ class LandingState extends State<Landing> {
                           MaterialPageRoute(builder: (BuildContext context) => Register()),
                         );
                       },
-                      child: const Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),),
+                      child: const Text('Sign up', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
                       color: const Color(0xFFC2AEE2),
                     ),
                   ),
