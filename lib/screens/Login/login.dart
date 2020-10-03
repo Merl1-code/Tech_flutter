@@ -192,7 +192,7 @@ class LoginState extends State<Login> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push<MaterialPageRoute>(
+                            Navigator.pushReplacement<MaterialPageRoute, dynamic>(
                               context,
                               MaterialPageRoute(builder: (BuildContext context) => Register()),
                             );

@@ -282,7 +282,7 @@ class RegisterState extends State<Register> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push<MaterialPageRoute>(
+                            Navigator.pushReplacement<MaterialPageRoute, dynamic>(
                               context,
                               MaterialPageRoute(builder: (BuildContext context) => Login()),
                             );
