@@ -22,11 +22,7 @@ class App extends StatelessWidget {
       home: UseFirebase(
         loading: const Text('loading...'),
         error: const Text('firebase error'),
-        success: Builder(
-          builder: (BuildContext context) {
-            return Landing();
-          },
-        ),
+        success: Landing(),
       ),
     );
   }
