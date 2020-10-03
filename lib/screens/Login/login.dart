@@ -86,7 +86,7 @@ class LoginState extends State<Login> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(color: Colors.white, height: 2.5, fontSize: 16),
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
                                 decoration: InputDecoration(
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
@@ -130,7 +130,7 @@ class LoginState extends State<Login> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: true,
-                                style: const TextStyle(color: Colors.white, height: 2.5, fontSize: 16),
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
                                 decoration: InputDecoration(
 
                                     focusedErrorBorder: OutlineInputBorder(
