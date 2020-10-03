@@ -63,7 +63,7 @@ class LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget> [
-                      const SizedBox(height: 40.0),
+                      const SizedBox(height: 20.0),
                       const FittedBox(
                         child: Text('Login',
                           style: TextStyle(fontFamily: 'Adlery Pro', fontSize: 50, color: Color(0xFFB283FC)),
@@ -87,7 +87,7 @@ class LoginState extends State<Login> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 18),
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
                                 decoration: InputDecoration(
                                     focusedErrorBorder: OutlineInputBorder(
                                       // width: 0.0 produces a thin "hairline" border
@@ -112,14 +112,14 @@ class LoginState extends State<Login> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Email',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 18, height: 1.5)
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 1.5)
                                 ),
                               ),
                               height: 65,
                             ),
                             const SizedBox(height: 25.0),
                             Container(
-                              height: 65,
+                              height: 60,
                               child: TextFormField(
                                 controller: passwordController,
                                 cursorColor: Colors.white,
@@ -131,7 +131,7 @@ class LoginState extends State<Login> {
                                 },
                                 keyboardType: TextInputType.visiblePassword,
                                 obscureText: true,
-                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 18),
+                                style: const TextStyle(color: Colors.white, height: 1.5, fontSize: 16),
                                 decoration: InputDecoration(
 
                                     focusedErrorBorder: OutlineInputBorder(
@@ -157,14 +157,14 @@ class LoginState extends State<Login> {
                                       borderSide: BorderSide.none,
                                     ),
                                     hintText: 'Password',
-                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 18, height: 1.5)
+                                    hintStyle: const TextStyle(color: Colors.white, fontSize: 16, height: 1.5)
                                 ),
                               ),
                             ),
                             const SizedBox(height: 25.0),
                             Container(
                               width: double.infinity,
-                              height: 65,
+                              height: 60,
                               child: RaisedButton(
                                 elevation: 0,
                                 padding: const EdgeInsets.all(15.0),
@@ -176,15 +176,15 @@ class LoginState extends State<Login> {
                                     asyncLogin(emailController.text, passwordController.text);
                                   }
                                 },
-                                child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),),
+                                child: const Text('Login', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
                                 color: const Color(0xFFB283FC),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 10.0),
                       Container(
+                        height: 60,
                         alignment: Alignment.centerRight,
                         child: FlatButton(
                           child: const Text('sign up instead',
