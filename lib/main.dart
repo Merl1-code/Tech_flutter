@@ -1,4 +1,6 @@
+import 'package:Tech_flutter/screens/Landing/landing.dart';
 import 'package:Tech_flutter/screens/Login/login.dart';
+import 'package:Tech_flutter/screens/Register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/Firebase/components/useFirebase.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +26,7 @@ class App extends StatelessWidget {
         error: const Text('firebase error'),
         success: Builder(
           builder: (BuildContext context) {
-            return Login();
+            return Landing();
           },
         ),
       ),
