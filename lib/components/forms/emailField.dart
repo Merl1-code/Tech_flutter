@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'flatTextField.dart';
 
+String _defaultEmailValidator(String value) {
+  if (value.isEmpty) {
+    return 'Please enter a valid email';
+  }
+  return null;
+}
+
 class EmailField extends StatelessWidget {
   const EmailField({
     this.controller,
+    this.hint = 'Email',
+    this.validator = _defaultEmailValidator,
   });
 
   final TextEditingController controller;
+  final String hint;
+  final String Function(String) validator;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +29,8 @@ class EmailField extends StatelessWidget {
       borderColor: null,
       focusColor: const Color(0xFFB283FC),
       errorColor: Colors.red,
-      hintText: 'Email',
-      validator: (String value) {
-        if (value.isEmpty) {
-          return 'Please enter a valid email';
-        }
-        return null;
-      },
-      errorMessage: null,
+      hintText: hint,
+      validator: validator,
     );
   }
 }

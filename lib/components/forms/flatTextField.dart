@@ -21,7 +21,6 @@ class FlatTextField extends StatelessWidget {
     @required this.errorColor,
     @required this.hintText,
     @required this.validator,
-    @required this.errorMessage,
     this.enabled = true,
     this.obscureText = false,
   });
@@ -37,7 +36,6 @@ class FlatTextField extends StatelessWidget {
 
   final String hintText;
   final String Function(String) validator;
-  final String errorMessage;
 
   final bool enabled;
   final bool obscureText;
