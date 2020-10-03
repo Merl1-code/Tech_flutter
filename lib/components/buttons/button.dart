@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-enum int { main, secondary }
+const double HEIGHT = 50;
+const double ELEVATION = 0;
+const double PADDING = 15;
+const double BORDER_RADIUS = 50;
+
+const double FONT_SIZE = 18;
+const FontWeight FONT_WEIGHT = FontWeight.bold;
+const double TEXT_HEIGHT = 1;
 
 class Button extends StatelessWidget {
   const Button(
@@ -18,20 +25,20 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 50,
+      height: HEIGHT,
       child: RaisedButton(
-        elevation: 0,
-        padding: const EdgeInsets.all(15.0),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+        elevation: ELEVATION,
+        padding: const EdgeInsets.all(PADDING),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(BORDER_RADIUS)),
         onPressed: onPressed,
         child: Text(
           text,
           style: TextStyle(
             color: textColor,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            height: 1,
+            fontSize: FONT_SIZE,
+            fontWeight: FONT_WEIGHT,
+            height: TEXT_HEIGHT,
           ),
         ),
         color: backgroundColor,
