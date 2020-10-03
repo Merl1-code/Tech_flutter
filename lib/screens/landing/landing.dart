@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/login/login.dart';
-import 'package:Tech_flutter/components/button.dart';
+import 'package:Tech_flutter/components/buttons/all.dart';
 
 class Landing extends StatefulWidget {
   @override
@@ -50,7 +50,7 @@ class LandingState extends State<Landing> {
                   ),
                 ),
                 const SizedBox(height: 60.0),
-                Button(
+                MainButton(
                   text: 'Sign in',
                   onPressed: () {
                     Navigator.push<MaterialPageRoute>(
@@ -59,10 +59,9 @@ class LandingState extends State<Landing> {
                           builder: (BuildContext context) => Login()),
                     );
                   },
-                  backgroundColor: const Color(0xFFB283FC),
                 ),
                 const SizedBox(height: 25.0),
-                Button(
+                SecondaryButton(
                   text: 'Sign up',
                   onPressed: () {
                     Navigator.push<MaterialPageRoute>(
@@ -71,7 +70,6 @@ class LandingState extends State<Landing> {
                           builder: (BuildContext context) => Register()),
                     );
                   },
-                  backgroundColor: const Color(0xFFC2AEE2),
                 ),
               ],
             ),

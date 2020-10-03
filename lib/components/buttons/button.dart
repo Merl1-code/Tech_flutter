@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
+enum int { main, secondary }
+
 class Button extends StatelessWidget {
-  const Button({@required this.text, this.onPressed, this.backgroundColor});
+  const Button(
+      {@required this.text,
+      @required this.onPressed,
+      @required this.textColor,
+      @required this.backgroundColor});
 
   final String text;
   final void Function() onPressed;
+  final Color textColor;
   final Color backgroundColor;
 
   @override
@@ -20,11 +27,12 @@ class Button extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              height: 1),
+          style: TextStyle(
+            color: textColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            height: 1,
+          ),
         ),
         color: backgroundColor,
       ),
