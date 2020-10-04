@@ -8,9 +8,11 @@ void main() {
 }
 
 class App extends StatelessWidget {
+  final List<DeviceOrientation> orientation = <DeviceOrientation>[DeviceOrientation.portraitUp];
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    SystemChrome.setPreferredOrientations(orientation);
     return MaterialApp(
       title: 'Bùlapp',
       theme: ThemeData(
