@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/firebase/utils/credential_result.dart';
 import 'package:Tech_flutter/firebase/utils/login.dart';
-import 'package:Tech_flutter/components/buttons/main.dart';
+import 'package:Tech_flutter/components/buttons/primary.dart';
 import 'package:Tech_flutter/components/forms/fields.dart';
 
 class Login extends StatefulWidget {
@@ -106,11 +106,9 @@ class LoginState extends State<Login> {
                         height: 60,
                         alignment: Alignment.centerRight,
                         child: FlatButton(
-                          child: const Text(
+                          child: Text(
                             'sign up instead',
-                            style: TextStyle(
-                              color: Color(0xFFB283FC),
-                            ),
+                            style: Theme.of(context).textTheme.overline,
                           ),
                           onPressed: () {
                             Navigator.pushReplacement<

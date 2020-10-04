@@ -25,10 +25,9 @@ class EmailField extends StatelessWidget {
       controller: controller,
       keyboardType: TextInputType.emailAddress,
       textColor: Colors.white,
-      backgroundColor: const Color(0xFFC2AEE2),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       borderColor: null,
       focusColor: const Color(0xFFB283FC),
-      errorColor: Colors.red,
       hintText: hint,
       validator: validator,
     );

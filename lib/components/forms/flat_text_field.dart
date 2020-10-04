@@ -18,7 +18,6 @@ class FlatTextField extends StatelessWidget {
     @required this.backgroundColor,
     @required this.borderColor,
     @required this.focusColor,
-    @required this.errorColor,
     @required this.hintText,
     @required this.validator,
     this.enabled = true,
@@ -32,7 +31,6 @@ class FlatTextField extends StatelessWidget {
   final Color backgroundColor;
   final Color borderColor;
   final Color focusColor;
-  final Color errorColor;
 
   final String hintText;
   final String Function(String) validator;
@@ -66,14 +64,14 @@ class FlatTextField extends StatelessWidget {
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(BORDER_RADIUS),
             borderSide: BorderSide(
-              color: errorColor,
+              color: Theme.of(context).colorScheme.onError,
               width: BORDER_WIDTH,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(BORDER_RADIUS),
             borderSide: BorderSide(
-              color: errorColor,
+              color: Theme.of(context).colorScheme.error,
               width: BORDER_WIDTH,
             ),
           ),

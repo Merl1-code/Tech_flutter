@@ -28,10 +28,9 @@ class PasswordField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       obscureText: hidden,
       textColor: Colors.white,
-      backgroundColor: const Color(0xFFC2AEE2),
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       borderColor: null,
       focusColor: const Color(0xFFB283FC),
-      errorColor: Colors.red,
       hintText: hint,
       validator: validator,
     );

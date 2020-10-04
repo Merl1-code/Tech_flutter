@@ -4,20 +4,14 @@ const double ELEVATION = 0;
 const double PADDING = 15;
 const double BORDER_RADIUS = 50;
 
-const double FONT_SIZE = 18;
-const FontWeight FONT_WEIGHT = FontWeight.bold;
-const double TEXT_HEIGHT = 1;
-
 class Button extends StatelessWidget {
   const Button(
       {@required this.text,
       @required this.onPressed,
-      @required this.textColor,
       @required this.backgroundColor});
 
   final String text;
   final void Function() onPressed;
-  final Color textColor;
   final Color backgroundColor;
 
   @override
@@ -30,15 +24,7 @@ class Button extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(BORDER_RADIUS)),
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(
-            color: textColor,
-            fontSize: FONT_SIZE,
-            fontWeight: FONT_WEIGHT,
-            height: TEXT_HEIGHT,
-          ),
-        ),
+        child: Text(text, style: Theme.of(context).textTheme.button),
         color: backgroundColor,
       ),
     );
