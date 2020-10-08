@@ -1,6 +1,7 @@
 import 'package:flutter/painting.dart';
-
 import 'package:flutter/material.dart';
+
+import 'package:Tech_flutter/theme.dart' as theme;
 import 'button.dart';
 
 class SecondaryButton extends StatelessWidget {
@@ -12,8 +13,7 @@ class SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Color textColor = Colors.white;
-    const Color backgroundColor =
-        Color(0xFFC2AEE2); //Theme.of(context).colors.main;
+    final Color backgroundColor = theme.colors.secondary;
 
     return Button(
       text: text,

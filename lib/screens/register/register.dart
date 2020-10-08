@@ -1,11 +1,12 @@
-import 'package:Tech_flutter/components/buttons/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:Tech_flutter/screens/login/login.dart';
 import 'package:Tech_flutter/firebase/utils/credential_result.dart';
 import 'package:Tech_flutter/firebase/utils/register.dart';
+import 'package:Tech_flutter/components/buttons/primary.dart';
 import 'package:Tech_flutter/components/forms/fields.dart';
+import 'package:Tech_flutter/theme.dart' as theme;
 
 class Register extends StatefulWidget {
   @override
@@ -49,7 +50,7 @@ class RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE6DAF9),
+      backgroundColor: theme.colors.background,
       body: Container(
         height: double.infinity,
         child: SafeArea(
@@ -63,7 +64,7 @@ class RegisterState extends State<Register> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  height: 200,
+                  height: 190,
                   width: double.infinity,
                   child: SvgPicture.asset(
                     'assets/images/illustration_inscription.svg',
@@ -76,13 +77,10 @@ class RegisterState extends State<Register> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       const SizedBox(height: 20.0),
-                      const FittedBox(
+                      FittedBox(
                         child: Text(
                           'Register',
-                          style: TextStyle(
-                              fontFamily: 'Adlery Pro',
-                              fontSize: 50,
-                              color: Color(0xFFB283FC)),
+                          style: theme.texts.title,
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -122,7 +120,7 @@ class RegisterState extends State<Register> {
                               hint: 'Confirm password',
                             ),
                             const SizedBox(height: 15.0),
-                            MainButton(
+                            PrimaryButton(
                               text: 'Sign up',
                               onPressed: _validateForm,
                             ),
@@ -133,10 +131,10 @@ class RegisterState extends State<Register> {
                         height: 60,
                         alignment: Alignment.centerRight,
                         child: FlatButton(
-                          child: const Text(
+                          child: Text(
                             'sign in instead',
                             style: TextStyle(
-                              color: Color(0xFFB283FC),
+                              color: theme.colors.primary,
                             ),
                           ),
                           onPressed: () {

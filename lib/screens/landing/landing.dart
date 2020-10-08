@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/login/login.dart';
 import 'package:Tech_flutter/components/buttons/all.dart';
+import 'package:Tech_flutter/theme.dart' as theme;
 
 class Landing extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE6DAF9),
+      backgroundColor: theme.colors.background,
       body: Container(
         height: double.infinity,
         width: double.infinity,
@@ -24,52 +25,56 @@ class LandingState extends State<Landing> {
           child: SingleChildScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             padding: const EdgeInsets.symmetric(
-              horizontal: 50.0,
               vertical: 30.0,
+              horizontal: 30,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const SizedBox(height: 30.0),
-                Container(
+                SvgPicture.asset(
+                  'assets/images/illustration_landing.svg',
                   height: 250,
                   width: double.infinity,
-                  child: SvgPicture.asset(
-                    'assets/images/illustration_landing.svg',
+                ),
+                const SizedBox(height: 30.0),
+                FittedBox(
+                  child: Text(
+                    'Friend Reminder',
+                    style: theme.texts.title,
                   ),
                 ),
                 const SizedBox(height: 40.0),
-                const FittedBox(
-                  child: Text(
-                    'Friend Reminder',
-                    style: TextStyle(
-                        fontFamily: 'Adlery Pro',
-                        fontSize: 65,
-                        color: Color(0xFFB283FC)),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30.0,
                   ),
-                ),
-                const SizedBox(height: 60.0),
-                MainButton(
-                  text: 'Sign in',
-                  onPressed: () {
-                    Navigator.push<MaterialPageRoute<dynamic>>(
-                      context,
-                      MaterialPageRoute<MaterialPageRoute<dynamic>>(
-                          builder: (BuildContext context) => Login()),
-                    );
-                  },
-                ),
-                const SizedBox(height: 25.0),
-                SecondaryButton(
-                  text: 'Sign up',
-                  onPressed: () {
-                    Navigator.push<MaterialPageRoute<dynamic>>(
-                      context,
-                      MaterialPageRoute<MaterialPageRoute<dynamic>>(
-                          builder: (BuildContext context) => Register()),
-                    );
-                  },
+                  child: Column(
+                    children: <Widget>[
+                      PrimaryButton(
+                        text: 'Sign in',
+                        onPressed: () {
+                          Navigator.push<MaterialPageRoute<dynamic>>(
+                            context,
+                            MaterialPageRoute<MaterialPageRoute<dynamic>>(
+                                builder: (BuildContext context) => Login()),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 25.0),
+                      SecondaryButton(
+                        text: 'Sign up',
+                        onPressed: () {
+                          Navigator.push<MaterialPageRoute<dynamic>>(
+                            context,
+                            MaterialPageRoute<MaterialPageRoute<dynamic>>(
+                                builder: (BuildContext context) => Register()),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

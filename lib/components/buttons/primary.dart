@@ -1,19 +1,19 @@
 import 'package:flutter/painting.dart';
-
 import 'package:flutter/material.dart';
+
+import 'package:Tech_flutter/theme.dart' as theme;
 import 'button.dart';
 
-class MainButton extends StatelessWidget {
-  const MainButton({this.text, this.onPressed});
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({this.text, this.onPressed});
 
   final String text;
   final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = Colors.white;
-    const Color backgroundColor =
-        Color(0xFFB283FC); //Theme.of(context).colors.main;
+    const Color textColor = Colors.white;
+    final Color backgroundColor = theme.colors.primary;
 
     return Button(
       text: text,

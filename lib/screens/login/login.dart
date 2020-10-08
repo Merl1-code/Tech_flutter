@@ -4,8 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/firebase/utils/credential_result.dart';
 import 'package:Tech_flutter/firebase/utils/login.dart';
-import 'package:Tech_flutter/components/buttons/main.dart';
+import 'package:Tech_flutter/components/buttons/primary.dart';
 import 'package:Tech_flutter/components/forms/fields.dart';
+import 'package:Tech_flutter/theme.dart' as theme;
 
 class Login extends StatefulWidget {
   @override
@@ -37,7 +38,7 @@ class LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE6DAF9),
+      backgroundColor: theme.colors.background,
       body: Container(
         height: double.infinity,
         child: SafeArea(
@@ -51,7 +52,7 @@ class LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  height: 230,
+                  height: 190,
                   width: double.infinity,
                   child: SvgPicture.asset(
                     'assets/images/illustration_login.svg',
@@ -65,13 +66,10 @@ class LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       const SizedBox(height: 20.0),
-                      const FittedBox(
+                      FittedBox(
                         child: Text(
                           'Login',
-                          style: TextStyle(
-                              fontFamily: 'Adlery Pro',
-                              fontSize: 50,
-                              color: Color(0xFFB283FC)),
+                          style: theme.texts.title,
                         ),
                       ),
                       const SizedBox(height: 10.0),
@@ -88,11 +86,9 @@ class LoginState extends State<Login> {
                               controller: passwordController,
                             ),
                             const SizedBox(height: 20.0),
-                            MainButton(
+                            PrimaryButton(
                               text: 'Sign in',
                               onPressed: () {
-                                // Validate returns true if the form is valid, or false
-                                // otherwise.
                                 if (_formKey.currentState.validate() != null) {
                                   asyncLogin(emailController.text,
                                       passwordController.text);
@@ -106,10 +102,10 @@ class LoginState extends State<Login> {
                         height: 60,
                         alignment: Alignment.centerRight,
                         child: FlatButton(
-                          child: const Text(
+                          child: Text(
                             'sign up instead',
                             style: TextStyle(
-                              color: Color(0xFFB283FC),
+                              color: theme.colors.primary,
                             ),
                           ),
                           onPressed: () {

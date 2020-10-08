@@ -1,2 +1,2 @@
-export 'main.dart';
+export 'primary.dart';
 export 'secondary.dart';
