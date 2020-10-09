@@ -13,7 +13,7 @@ class PasswordField extends StatelessWidget {
     this.controller,
     this.hint = 'Password',
     this.validator = _defaultValidator,
-    this.hidden = false,
+    this.hidden = true,
   });
 
   final TextEditingController controller;

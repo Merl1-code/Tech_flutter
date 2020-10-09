@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/firebase/utils/credential_result.dart';
 import 'package:Tech_flutter/firebase/utils/login.dart';
 import 'package:Tech_flutter/components/buttons/primary.dart';
@@ -15,9 +14,17 @@ class Login extends StatefulWidget {
   }
 }
 
-Future<String> asyncLogin(String email, String password) async {
+Future<String> asyncLogin(
+  String email,
+  String password,
+  BuildContext context,
+) async {
   final Result res =
       await signInUserWithEmailAndPassword(email: email, password: password);
+  if (res.success) {
+    Navigator.popUntil(context, ModalRoute.withName('/'));
+    Navigator.pushNamed(context, '/');
+  }
   return res.message;
 }
 
@@ -90,8 +97,11 @@ class LoginState extends State<Login> {
                               text: 'Sign in',
                               onPressed: () {
                                 if (_formKey.currentState.validate() != null) {
-                                  asyncLogin(emailController.text,
-                                      passwordController.text);
+                                  asyncLogin(
+                                    emailController.text,
+                                    passwordController.text,
+                                    context,
+                                  );
                                 }
                               },
                             ),
@@ -108,15 +118,8 @@ class LoginState extends State<Login> {
                               color: theme.colors.primary,
                             ),
                           ),
-                          onPressed: () {
-                            Navigator.pushReplacement<
-                                MaterialPageRoute<dynamic>, dynamic>(
-                              context,
-                              MaterialPageRoute<MaterialPageRoute<dynamic>>(
-                                  builder: (BuildContext context) =>
-                                      Register()),
-                            );
-                          },
+                          onPressed: () =>
+                              Navigator.popAndPushNamed(context, '/register'),
                         ),
                       )
                     ],
