@@ -1,7 +1,6 @@
 import 'package:Tech_flutter/firebase/components/auth_only.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:Tech_flutter/firebase/utils/login.dart';
 import 'package:Tech_flutter/firebase/components/use_firebase.dart';
 import 'package:Tech_flutter/components/navscreen.dart' as nav;
 import 'package:Tech_flutter/screens/landing/landing.dart';
@@ -38,7 +37,7 @@ class App extends StatelessWidget {
       ),
       success: MaterialApp(
         title: 'Bùlapp',
-        initialRoute: userIsAuthenticated() ? '/authenticated' : '/',
+        initialRoute: '/authenticated',
         routes: <String, Widget Function(BuildContext)>{
           '/': (BuildContext context) => Landing(),
           '/register': (BuildContext context) => Register(),
