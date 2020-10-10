@@ -26,3 +26,7 @@ Future<Result> signInUserWithEmailAndPassword(
 
   return res;
 }
+
+bool userIsAuthenticated() {
+  return FirebaseAuth.instance.currentUser != null;
+}

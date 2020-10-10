@@ -24,7 +24,7 @@ Future<String> asyncRegister(
       await createUserWithEmailAndPassword(email: email, password: password);
   if (res.success) {
     Navigator.popUntil(context, ModalRoute.withName('/'));
-    Navigator.pushNamed(context, '/');
+    Navigator.popAndPushNamed(context, '/authenticated');
   }
   return res.message;
 }
@@ -64,7 +64,7 @@ class RegisterState extends State<Register> {
     return Screen(
       backgroundColor: theme.colors.background,
       padding: const EdgeInsets.all(30),
-      child: Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

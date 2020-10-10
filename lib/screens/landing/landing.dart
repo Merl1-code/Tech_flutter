@@ -20,7 +20,7 @@ class LandingState extends State<Landing> {
     return Screen(
       backgroundColor: theme.colors.background,
       padding: const EdgeInsets.all(30),
-      child: Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

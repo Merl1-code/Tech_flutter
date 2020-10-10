@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class Screen extends StatelessWidget {
   const Screen({
-    this.child,
+    this.body,
     this.header,
     this.footer,
     this.backgroundColor,
     this.padding,
   });
 
-  final Widget child;
+  final Widget body;
   final Widget header;
   final Widget footer;
   final Color backgroundColor;
@@ -17,11 +17,11 @@ class Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget body = Expanded(
+    final Widget wrappedBody = Expanded(
       child: SingleChildScrollView(
         padding: padding,
         physics: const AlwaysScrollableScrollPhysics(),
-        child: child,
+        child: body,
       ),
     );
 
@@ -31,7 +31,7 @@ class Screen extends StatelessWidget {
         child: Column(
           children: <Widget>[
             if (header != null) header,
-            if (child != null) body,
+            if (body != null) wrappedBody,
             if (footer != null) footer,
           ],
         ),

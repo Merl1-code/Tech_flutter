@@ -1,11 +1,15 @@
 import 'package:Tech_flutter/firebase/components/auth_only.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:Tech_flutter/firebase/utils/login.dart';
 import 'package:Tech_flutter/firebase/components/use_firebase.dart';
+import 'package:Tech_flutter/components/navscreen.dart' as nav;
 import 'package:Tech_flutter/screens/landing/landing.dart';
 import 'package:Tech_flutter/screens/login/login.dart';
 import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/home/home.dart';
+import 'package:Tech_flutter/screens/profile/profile.dart';
+import 'package:Tech_flutter/screens/contact/contact.dart';
 
 void main() {
   runApp(App());
@@ -34,22 +38,31 @@ class App extends StatelessWidget {
       ),
       success: MaterialApp(
         title: 'Bùlapp',
-        routes: {
-          '/': (BuildContext context) => AuthRouting(),
+        initialRoute: userIsAuthenticated() ? '/authenticated' : '/',
+        routes: <String, Widget Function(BuildContext)>{
+          '/': (BuildContext context) => Landing(),
           '/register': (BuildContext context) => Register(),
           '/login': (BuildContext context) => Login(),
+          '/authenticated': (BuildContext context) => Auth(),
         },
       ),
     );
   }
 }
 
-class AuthRouting extends StatelessWidget {
+class Auth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthOnly(
-      redirect: Landing(),
-      child: const Home(),
+      redirectionRoute: '/',
+      child: nav.NavScreen(
+        initiaRoute: 'home',
+        routes: <nav.Route>[
+          nav.Route('profil', Profil(), Icons.account_circle_rounded),
+          const nav.Route('home', Home(), Icons.home_rounded),
+          nav.Route('contact', Contact(), Icons.message_rounded),
+        ],
+      ),
     );
   }
 }
