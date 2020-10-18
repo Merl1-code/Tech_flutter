@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:Tech_flutter/components/screen.dart';
 import 'package:Tech_flutter/components/header.dart';
 import 'package:Tech_flutter/components/navbar.dart';
+import 'package:Tech_flutter/theme.dart' as theme;
 
 class Route {
   const Route(this.route, this.widget, this.icon);
@@ -44,6 +45,9 @@ class _NavScreenState extends State<NavScreen> {
   @override
   Widget build(BuildContext context) {
     return Screen(
+      notchColor: theme.colors.background,
+      backgroundColor: theme.colors.secondary,
+      padding: const EdgeInsets.all(21),
       header: Header(),
       footer: Navbar(
         currentRoute: currentRoute,

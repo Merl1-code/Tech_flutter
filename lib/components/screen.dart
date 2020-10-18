@@ -6,6 +6,7 @@ class Screen extends StatelessWidget {
     this.header,
     this.footer,
     this.backgroundColor,
+    this.notchColor,
     this.padding,
   });
 
@@ -13,20 +14,25 @@ class Screen extends StatelessWidget {
   final Widget header;
   final Widget footer;
   final Color backgroundColor;
+  final Color notchColor;
   final EdgeInsets padding;
 
   @override
   Widget build(BuildContext context) {
     final Widget wrappedBody = Expanded(
-      child: SingleChildScrollView(
-        padding: padding,
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: body,
+      child: Container(
+        width: double.infinity,
+        color: backgroundColor,
+        child: SingleChildScrollView(
+          padding: padding,
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: body,
+        ),
       ),
     );
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: notchColor ?? backgroundColor,
       body: SafeArea(
         child: Column(
           children: <Widget>[

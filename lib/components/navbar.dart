@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
+const double ICON_SIZE = 34;
+
 class Navbar extends StatelessWidget {
   Navbar({this.routes, this.currentRoute, this.onNavigate});
 
@@ -23,7 +25,7 @@ class Navbar extends StatelessWidget {
       onPressed: () => onNavigate(route),
       child: Icon(
         icon,
-        size: 50,
+        size: ICON_SIZE,
         color: _getColor(route),
       ),
     );
@@ -40,7 +42,7 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      //height: 55,
       color: theme.colors.background,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

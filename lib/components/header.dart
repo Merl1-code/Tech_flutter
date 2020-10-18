@@ -5,9 +5,9 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(13),
       width: double.infinity,
-      height: 100,
+      height: 89,
       color: theme.colors.background,
       child: FittedBox(
         child: Text(
