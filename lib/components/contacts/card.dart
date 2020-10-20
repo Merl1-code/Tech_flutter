@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Card extends StatelessWidget {
+class ContactCard extends StatelessWidget {
+  const ContactCard({this.name, this.photo, this.last});
+  final String name;
+  final String photo;
+  final String last;
+
   @override
   Widget build(BuildContext context) {
     return FlatButton(
@@ -13,13 +18,13 @@ class Card extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          const CircleAvatar(
+          CircleAvatar(
             radius: 35,
-            backgroundColor: Color(0xFFB283FC),
+            backgroundColor: const Color(0xFFB283FC),
             child: CircleAvatar(
               radius: 32,
               backgroundImage: NetworkImage(
-                'https://scontent-rtl.akamaized.net/GED/09670000/9677800/9677861_700x0.webp',
+                photo,
               ),
               backgroundColor: null,
             ),
@@ -33,10 +38,10 @@ class Card extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const Text(
-                  'Jean Pierre Pernaut',
+                Text(
+                  name,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       color: Color(0xFFB283FC),
                       fontWeight: FontWeight.bold),
@@ -47,19 +52,19 @@ class Card extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const <Text>[
-                    Text(
+                  children: <Text>[
+                    const Text(
                       'Last contact :',
                       style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
                     ),
                     Text(
-                      ' 18h ',
-                      style: TextStyle(
+                      ' ' + last + ' ',
+                      style: const TextStyle(
                           fontSize: 12,
                           color: Color(0xFFB283FC),
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    const Text(
                       'ago',
                       style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
                     ),

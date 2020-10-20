@@ -9,15 +9,35 @@ import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/home/home.dart';
 import 'package:Tech_flutter/screens/profile/profile.dart';
 import 'package:Tech_flutter/screens/contact/contact.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   runApp(App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   final List<DeviceOrientation> orientation = <DeviceOrientation>[
     DeviceOrientation.portraitUp
   ];
+  Map<Permission, PermissionStatus> statuses;
+
+  @override
+  void initState() {
+    super.initState();
+    initMap();
+  }
+
+  Future<void> initMap() async {
+    statuses = await <Permission>[
+    Permission.contacts,
+    Permission.phone,
+    ].request();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +79,7 @@ class Auth extends StatelessWidget {
         routes: <nav.Route>[
           nav.Route('profil', Profil(), Icons.account_circle_rounded),
           const nav.Route('home', Home(), Icons.home_rounded),
-          nav.Route('contact', Contact(), Icons.message_rounded),
+          nav.Route('contact', ContactList(), Icons.message_rounded),
         ],
       ),
     );
