@@ -3,7 +3,11 @@ import 'flat_text_field.dart';
 
 String _defaultEmailValidator(String value) {
   if (value.isEmpty) {
-    return 'Please enter a valid email';
+    return 'Please enter an email';
+  } else if (!RegExp(
+          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+      .hasMatch(value)) {
+    return 'Email is incorrect';
   }
   return null;
 }

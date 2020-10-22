@@ -24,8 +24,8 @@ class Screen extends StatelessWidget {
         width: double.infinity,
         color: backgroundColor,
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           padding: padding,
-          physics: const AlwaysScrollableScrollPhysics(),
           child: body,
         ),
       ),

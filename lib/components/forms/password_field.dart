@@ -4,6 +4,8 @@ import 'flat_text_field.dart';
 String _defaultValidator(String value) {
   if (value.isEmpty) {
     return 'Please enter a valid password';
+  } else if (value.length < 8) {
+    return 'Password should be at least 8 characters';
   }
   return null;
 }

@@ -32,46 +32,43 @@ class ContactCard extends StatelessWidget {
           const SizedBox(
             width: 15,
           ),
-          Container(
-            constraints: const BoxConstraints(minWidth: 100, maxWidth: 231),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  name,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 20,
-                      color: Color(0xFFB283FC),
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Text>[
-                    const Text(
-                      'Last contact :',
-                      style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
-                    ),
-                    Text(
-                      ' ' + last + ' ',
-                      style: const TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFFB283FC),
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const Text(
-                      'ago',
-                      style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                name,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 20,
+                    color: Color(0xFFB283FC),
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Text>[
+                  const Text(
+                    'Last contact :',
+                    style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
+                  ),
+                  Text(
+                    ' ' + last + ' ',
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Color(0xFFB283FC),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const Text(
+                    'ago',
+                    style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
+                  ),
+                ],
+              ),
+            ],
           ),
           const SizedBox(
             width: 35,

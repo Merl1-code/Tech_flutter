@@ -47,7 +47,7 @@ class LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Screen(
       backgroundColor: theme.colors.background,
-      padding: const EdgeInsets.all(30),
+      padding: const EdgeInsets.all(13),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

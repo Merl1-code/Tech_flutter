@@ -1,7 +1,8 @@
-import 'package:Tech_flutter/firebase/components/auth_only.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:Tech_flutter/firebase/components/auth_only.dart';
 import 'package:Tech_flutter/firebase/components/use_firebase.dart';
+import 'package:Tech_flutter/firebase/utils/login.dart';
 import 'package:Tech_flutter/components/navscreen.dart' as nav;
 import 'package:Tech_flutter/screens/landing/landing.dart';
 import 'package:Tech_flutter/screens/login/login.dart';
@@ -34,8 +35,8 @@ class _AppState extends State<App> {
 
   Future<void> initMap() async {
     statuses = await <Permission>[
-    Permission.contacts,
-    Permission.phone,
+      Permission.contacts,
+      Permission.phone,
     ].request();
   }
 
@@ -55,16 +56,24 @@ class _AppState extends State<App> {
           'Firebase error',
         ),
       ),
-      success: MaterialApp(
-        title: 'Bùlapp',
-        initialRoute: '/authenticated',
-        routes: <String, Widget Function(BuildContext)>{
-          '/': (BuildContext context) => Landing(),
-          '/register': (BuildContext context) => Register(),
-          '/login': (BuildContext context) => Login(),
-          '/authenticated': (BuildContext context) => Auth(),
-        },
-      ),
+      success: LayoutBuilder(builder: (
+        BuildContext context,
+        BoxConstraints constraints,
+      ) {
+        final String initialRoute =
+            userIsAuthenticated() ? '/authenticated' : '/';
+
+        return MaterialApp(
+          title: 'Bùlapp',
+          initialRoute: initialRoute,
+          routes: <String, Widget Function(BuildContext)>{
+            '/': (BuildContext context) => Landing(),
+            '/register': (BuildContext context) => Register(),
+            '/login': (BuildContext context) => Login(),
+            '/authenticated': (BuildContext context) => Auth(),
+          },
+        );
+      }),
     );
   }
 }
