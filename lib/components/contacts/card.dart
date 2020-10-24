@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ContactCard extends StatelessWidget {
-  const ContactCard({this.name, this.photo, this.last});
+  const ContactCard({this.name, this.photo, this.last, this.onPressed});
   final String name;
   final String photo;
   final String last;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return FlatButton(
       padding: const EdgeInsets.all(0.0),
       color: Colors.white,
-      onPressed: () {},
+      onPressed: onPressed,
       shape: RoundedRectangleBorder(
           side: BorderSide.none, borderRadius: BorderRadius.circular(50)),
       child: Row(

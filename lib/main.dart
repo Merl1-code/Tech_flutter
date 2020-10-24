@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:Tech_flutter/firebase/components/auth_only.dart';
 import 'package:Tech_flutter/firebase/components/use_firebase.dart';
 import 'package:Tech_flutter/firebase/utils/login.dart';
@@ -10,7 +12,7 @@ import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/home/home.dart';
 import 'package:Tech_flutter/screens/profile/profile.dart';
 import 'package:Tech_flutter/screens/contact/contact.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:Tech_flutter/ping_datas/ping_interface.dart';
 
 void main() {
   runApp(App());
@@ -83,13 +85,16 @@ class Auth extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthOnly(
       redirectionRoute: '/',
-      child: nav.NavScreen(
-        initiaRoute: 'home',
-        routes: <nav.Route>[
-          nav.Route('profil', Profil(), Icons.account_circle_rounded),
-          const nav.Route('home', Home(), Icons.home_rounded),
-          nav.Route('contact', ContactList(), Icons.message_rounded),
-        ],
+      child: ChangeNotifierProvider(
+        create: (BuildContext context) => PingInterface(),
+        child: nav.NavScreen(
+          initiaRoute: 'home',
+          routes: <nav.Route>[
+            nav.Route('profil', Profil(), Icons.account_circle_rounded),
+            const nav.Route('home', Home(), Icons.home_rounded),
+            nav.Route('contact', ContactList(), Icons.message_rounded),
+          ],
+        ),
       ),
     );
   }
