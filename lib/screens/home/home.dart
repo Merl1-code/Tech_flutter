@@ -9,6 +9,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: theme.spacings.bodyPadding,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

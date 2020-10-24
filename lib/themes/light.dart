@@ -43,3 +43,8 @@ class Texts {
     color: whiteColor,
   );
 }
+
+@immutable
+class Spacings {
+  final EdgeInsets bodyPadding = const EdgeInsets.all(21);
+}

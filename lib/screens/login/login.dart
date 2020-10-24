@@ -47,79 +47,81 @@ class LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Screen(
       backgroundColor: theme.colors.background,
-      padding: const EdgeInsets.all(13),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            height: 190,
-            width: double.infinity,
-            child: SvgPicture.asset(
-              'assets/images/illustration_login.svg',
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: theme.spacings.bodyPadding,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 190,
+              width: double.infinity,
+              child: SvgPicture.asset(
+                'assets/images/illustration_login.svg',
+              ),
             ),
-          ),
-          Container(
-            padding:
-                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(height: 20.0),
-                FittedBox(
-                  child: Text(
-                    'Login',
-                    style: theme.texts.title,
-                  ),
-                ),
-                const SizedBox(height: 10.0),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      EmailField(
-                        controller: emailController,
-                      ),
-                      const SizedBox(height: 20.0),
-                      PasswordField(
-                        controller: passwordController,
-                      ),
-                      const SizedBox(height: 20.0),
-                      PrimaryButton(
-                        text: 'Sign in',
-                        onPressed: () {
-                          if (_formKey.currentState.validate() != null) {
-                            asyncLogin(
-                              emailController.text,
-                              passwordController.text,
-                              context,
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 60,
-                  alignment: Alignment.centerRight,
-                  child: FlatButton(
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 20.0),
+                  FittedBox(
                     child: Text(
-                      'sign up instead',
-                      style: TextStyle(
-                        color: theme.colors.primary,
-                      ),
+                      'Login',
+                      style: theme.texts.title,
                     ),
-                    onPressed: () =>
-                        Navigator.popAndPushNamed(context, '/register'),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
+                  const SizedBox(height: 10.0),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        EmailField(
+                          controller: emailController,
+                        ),
+                        const SizedBox(height: 20.0),
+                        PasswordField(
+                          controller: passwordController,
+                        ),
+                        const SizedBox(height: 20.0),
+                        PrimaryButton(
+                          text: 'Sign in',
+                          onPressed: () {
+                            if (_formKey.currentState.validate() != null) {
+                              asyncLogin(
+                                emailController.text,
+                                passwordController.text,
+                                context,
+                              );
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 60,
+                    alignment: Alignment.centerRight,
+                    child: FlatButton(
+                      child: Text(
+                        'sign up instead',
+                        style: TextStyle(
+                          color: theme.colors.primary,
+                        ),
+                      ),
+                      onPressed: () =>
+                          Navigator.popAndPushNamed(context, '/register'),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

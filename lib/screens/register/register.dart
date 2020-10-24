@@ -63,91 +63,94 @@ class RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Screen(
       backgroundColor: theme.colors.background,
-      padding: const EdgeInsets.all(30),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            height: 175,
-            width: double.infinity,
-            child: SvgPicture.asset(
-              'assets/images/illustration_inscription.svg',
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: theme.spacings.bodyPadding,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 175,
+              width: double.infinity,
+              child: SvgPicture.asset(
+                'assets/images/illustration_inscription.svg',
+              ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                const SizedBox(height: 20.0),
-                FittedBox(
-                  child: Text(
-                    'Register',
-                    style: theme.texts.title,
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 20.0),
+                  FittedBox(
+                    child: Text(
+                      'Register',
+                      style: theme.texts.title,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10.0),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      EmailField(
-                        controller: emailController,
-                      ),
-                      const SizedBox(height: 15.0),
-                      EmailField(
-                          controller: verifEmailController,
+                  const SizedBox(height: 10.0),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        EmailField(
+                          controller: emailController,
+                        ),
+                        const SizedBox(height: 15.0),
+                        EmailField(
+                            controller: verifEmailController,
+                            validator: (String value) {
+                              if (value != emailController.value.toString()) {
+                                return 'Emails doesn\'t match';
+                              }
+                              return null;
+                            },
+                            hint: 'Confirm Email'),
+                        const SizedBox(height: 15.0),
+                        PasswordField(
+                          controller: passwordController,
+                        ),
+                        const SizedBox(height: 15.0),
+                        PasswordField(
+                          controller: verifPasswordController,
                           validator: (String value) {
-                            if (value != emailController.value.toString()) {
-                              return 'Emails doesn\'t match';
+                            if (value != passwordController.value.toString()) {
+                              return 'Password doesn\'t math';
                             }
                             return null;
                           },
-                          hint: 'Confirm Email'),
-                      const SizedBox(height: 15.0),
-                      PasswordField(
-                        controller: passwordController,
-                      ),
-                      const SizedBox(height: 15.0),
-                      PasswordField(
-                        controller: verifPasswordController,
-                        validator: (String value) {
-                          if (value != passwordController.value.toString()) {
-                            return 'Password doesn\'t math';
-                          }
-                          return null;
-                        },
-                        hint: 'Confirm password',
-                      ),
-                      const SizedBox(height: 15.0),
-                      PrimaryButton(
-                        text: 'Sign up',
-                        onPressed: _validateForm,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  height: 60,
-                  alignment: Alignment.centerRight,
-                  child: FlatButton(
-                    child: Text(
-                      'sign in instead',
-                      style: TextStyle(
-                        color: theme.colors.primary,
-                      ),
+                          hint: 'Confirm password',
+                        ),
+                        const SizedBox(height: 15.0),
+                        PrimaryButton(
+                          text: 'Sign up',
+                          onPressed: _validateForm,
+                        ),
+                      ],
                     ),
-                    onPressed: () =>
-                        Navigator.popAndPushNamed(context, '/login'),
                   ),
-                )
-              ],
-            ),
-          )
-        ],
+                  Container(
+                    height: 60,
+                    alignment: Alignment.centerRight,
+                    child: FlatButton(
+                      child: Text(
+                        'sign in instead',
+                        style: TextStyle(
+                          color: theme.colors.primary,
+                        ),
+                      ),
+                      onPressed: () =>
+                          Navigator.popAndPushNamed(context, '/login'),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

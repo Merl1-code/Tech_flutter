@@ -21,13 +21,8 @@ class Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Widget wrappedBody = Expanded(
       child: Container(
-        width: double.infinity,
         color: backgroundColor,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: padding,
-          child: body,
-        ),
+        child: body,
       ),
     );
 

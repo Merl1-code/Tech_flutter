@@ -12,7 +12,7 @@ import 'package:Tech_flutter/screens/register/register.dart';
 import 'package:Tech_flutter/screens/home/home.dart';
 import 'package:Tech_flutter/screens/profile/profile.dart';
 import 'package:Tech_flutter/screens/contact/contact.dart';
-import 'package:Tech_flutter/ping_datas/ping_interface.dart';
+import 'package:Tech_flutter/datastore/datastore_interface.dart';
 
 void main() {
   runApp(App());
@@ -85,8 +85,8 @@ class Auth extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthOnly(
       redirectionRoute: '/',
-      child: ChangeNotifierProvider(
-        create: (BuildContext context) => PingInterface(),
+      child: ChangeNotifierProvider<DatastoreInterface>(
+        create: (BuildContext context) => DatastoreInterface(),
         child: nav.NavScreen(
           initiaRoute: 'home',
           routes: <nav.Route>[
