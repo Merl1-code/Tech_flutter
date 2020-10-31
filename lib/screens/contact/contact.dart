@@ -15,37 +15,16 @@ class ContactList extends StatefulWidget {
 }
 
 class ContactListState extends State<ContactList> {
-  Widget _renderContact(Contact contact) {
-    // return FutureBuilder<PingData>(
-    //   future: userPingsDatasForContact(contact.identifier),
-    //   builder: (
-    //     BuildContext context,
-    //     AsyncSnapshot<PingData> pingSnapshot,
-    //   ) {
-    //     if (pingSnapshot.connectionState == ConnectionState.waiting) {
-    //       return const Center(
-    //         child: CircularProgressIndicator(
-    //           backgroundColor: Colors.red,
-    //         ),
-    //       );
-    //     } else if (pingSnapshot.hasError) {
-    //       return const Text('errored');
-    //     }
-
-    //     final String lastPing = pingSnapshot.data.totalPing > 0
-    //         ? pingSnapshot.data.totalPing.toString()
-    //         : 'no ping yet';
-
+  Widget _renderContact(ContactWithPing data) {
     return ContactCard(
-      name: contact.displayName,
-      last: '0', //lastPing,
+      name: data.contact.displayName,
+      last:
+          data?.ping?.lastPing?.toString() ?? 'Never being pinged', //lastPing,
       photo:
           'https://scontent-rtl.akamaized.net/GED/09670000/9677800/9677861_700x0.webp',
-      //onPressed: () {
-      //store.pingContact(contact.phones.first.value);
-      //     },
-      //   );
-      // },
+      onPressed: () {
+        //store.pingContact(contact.phones.first.value);
+      },
     );
   }
 
@@ -56,11 +35,16 @@ class ContactListState extends State<ContactList> {
       ContactStore store,
       Widget child,
     ) {
-      return FutureBuilder<Iterable<Contact>>(
+      print("store:");
+      print(store != null);
+
+      return FutureBuilder<GloablContactDatas>(
         future: store.contacts,
-        builder: (BuildContext context,
-            AsyncSnapshot<Iterable<Contact>> contactSnapshot) {
-          userPingsDatas();
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<GloablContactDatas> contactSnapshot,
+        ) {
+          //userPingsDatas();
 
           if (contactSnapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -72,11 +56,12 @@ class ContactListState extends State<ContactList> {
             return ListView.separated(
               padding: theme.spacings.bodyPadding,
               physics: const BouncingScrollPhysics(),
-              itemCount: contactSnapshot.data.length,
+              itemCount: 10,
               cacheExtent: 21,
               itemBuilder: (BuildContext context, int index) {
+                print(contactSnapshot);
                 return _renderContact(
-                  contactSnapshot.data.elementAt(index),
+                  contactSnapshot.data.contacts[index],
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

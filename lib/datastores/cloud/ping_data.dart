@@ -3,7 +3,6 @@ class GlobalPingsData {
     this.userId,
     this.totalPings,
     this.lastPing,
-    this.pings,
   });
 
   int userId;
@@ -11,7 +10,7 @@ class GlobalPingsData {
   DateTime lastPing;
 
   //contactId: pingData
-  Map<String, PingData> pings;
+  Map<String, PingData> pings = <String, PingData>{};
 }
 
 class PingData {

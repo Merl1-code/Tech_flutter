@@ -12,12 +12,11 @@ class UseFirebase extends StatelessWidget {
   final Widget loading;
   final Widget success;
   final Widget error;
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<FirebaseApp>(
-        future: _initialization,
+        future: Firebase.initializeApp(),
         builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
           FirebaseFirestore.instance.settings =
               const Settings(persistenceEnabled: false);
