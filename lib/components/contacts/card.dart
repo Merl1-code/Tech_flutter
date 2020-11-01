@@ -53,7 +53,7 @@ class ContactCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Text>[
                   const Text(
-                    'Last contact :',
+                    '', //'Last contact :',
                     style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
                   ),
                   Text(
@@ -64,7 +64,7 @@ class ContactCard extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   const Text(
-                    'ago',
+                    '', //'ago',
                     style: TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
                   ),
                 ],
