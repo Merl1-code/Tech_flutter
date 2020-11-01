@@ -27,10 +27,7 @@ class ContactAPI extends ChangeNotifier {
     final Iterable<Contact> contacts = datas[0] as Iterable<Contact>;
     final GlobalPingsData pingsDatas = datas[1] as GlobalPingsData;
 
-    print(contacts.length);
-
     for (final Contact contact in contacts) {
-      print(contact.displayName);
       _datas.contacts[contact.identifier] = ContactWithPing(
         contact: contact,
         ping: pingsDatas.pings[contact.identifier],
@@ -52,9 +49,9 @@ class ContactAPI extends ChangeNotifier {
     });
   }
 
-  Future<bool> pingContact(String contactId) async {
+  Future<bool> pingContact(String contactId, String message) async {
     final ContactWithPing element = _datas.contacts[contactId];
-    _sendSMS('test', <String>[element.contact.phones.first.value]);
+    _sendSMS(message, <String>[element.contact.phones.first.value]);
 
     if (element.ping != null) {
       element.ping.totalPing += 1;
@@ -67,6 +64,8 @@ class ContactAPI extends ChangeNotifier {
     }
 
     _datas.contacts[contactId] = element;
+    //update firestore
+    setPingDataForContact(contactId, element.ping);
     notifyListeners();
     return true;
   }
