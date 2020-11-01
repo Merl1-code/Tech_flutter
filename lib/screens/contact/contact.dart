@@ -13,9 +13,16 @@ class ContactList extends StatefulWidget {
 
 class ContactListState extends State<ContactList> {
   Widget _renderContact(ContactAPI api, ContactWithPing contactData) {
+    String tmp = '';
+    if (contactData.ping != null) {
+      tmp = '${contactData.ping.lastPing} x${contactData.ping.totalPing}';
+    } else {
+      tmp = 'Never being pinged';
+    }
+
     return ContactCard(
       name: contactData.contact.displayName,
-      last: contactData.ping?.lastPing?.toString() ?? 'Never being pinged',
+      last: tmp,
       photo:
           'https://scontent-rtl.akamaized.net/GED/09670000/9677800/9677861_700x0.webp',
       onPressed: () {
