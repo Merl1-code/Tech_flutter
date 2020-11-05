@@ -34,6 +34,32 @@ class ContactListState extends State<ContactList> {
   Widget build(BuildContext context) {
     return ContactAPIProvider(
       builder: (BuildContext context, ContactAPI api, GlobalContactDatas data) {
+        return FutureBuilder<List<ContactWithPing>>(
+          future: api.getContactsByDate(descending: true),
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<List<ContactWithPing>> snapshot,
+          ) {
+            List<ContactWithPing> contactList = <ContactWithPing>[];
+            if (snapshot.hasData) {
+              contactList = snapshot.data;
+            }
+
+            return ListView.separated(
+              padding: theme.spacings.bodyPadding,
+              physics: const BouncingScrollPhysics(),
+              itemCount: contactList.length,
+              cacheExtent: 21,
+              itemBuilder: (BuildContext context, int index) => _renderContact(
+                api,
+                contactList[index],
+              ),
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(height: 13);
+              },
+            );
+          },
+        );
         final List<ContactWithPing> contactList = data.contacts.values.toList();
 
         return ListView.separated(

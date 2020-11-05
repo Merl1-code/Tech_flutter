@@ -14,7 +14,7 @@ class ContactWithPing {
 class GlobalContactDatas {
   int totalPings = 0;
   DateTime lastPing;
-  int contactsPinged; //not implemented
+  List<String> contactPinged = <String>[];
   int contactsNotPinged; //not implemented
   Contact lastContactPinged; //not implemented
   Map<String, ContactWithPing> contacts = <String, ContactWithPing>{};
@@ -35,6 +35,7 @@ class ContactAPI extends ChangeNotifier {
 
     _datas.totalPings = pingsDatas.totalPings;
     _datas.lastPing = pingsDatas.lastPing;
+    _datas.contactPinged = pingsDatas.contactPinged;
 
     for (final Contact contact in contacts) {
       _datas.contacts[contact.identifier] = ContactWithPing(
@@ -58,6 +59,73 @@ class ContactAPI extends ChangeNotifier {
     });
   }
 
+  Future<List<ContactWithPing>> getContactsByDate({
+    bool descending = false,
+  }) async {
+    final Map<String, PingData> pings = await getPingsByDate(
+      descending: descending,
+    );
+    final List<ContactWithPing> sortedList = <ContactWithPing>[];
+
+    //add sorted pings datas with associated
+    //contacted saved in loacl contact hash table
+    pings.forEach((String contactId, PingData pingData) {
+      print(_datas.contacts.length);
+
+      try {
+        sortedList.add(ContactWithPing(
+          contact: _datas.contacts[contactId].contact,
+          ping: pingData,
+        ));
+      } catch (e) {
+        print("Ha ?");
+        print(e);
+      }
+    });
+    //then add missing contacts
+    //cause it's possible a contact doesn't have
+    //a ping data from firebase
+    _datas.contacts.forEach((
+      String contactId,
+      ContactWithPing contactWithPing,
+    ) {
+      if (pings[contactId] == null) {
+        sortedList.add(contactWithPing);
+      }
+    });
+    return sortedList;
+  }
+
+  Future<List<ContactWithPing>> getContactsByScore({
+    bool descending = false,
+  }) async {
+    final Map<String, PingData> pings = await getPingsByScore(
+      descending: descending,
+    );
+    final List<ContactWithPing> sortedList = <ContactWithPing>[];
+
+    //add sorted pings datas with associated
+    //contacted saved in loacl contact hash table
+    pings.forEach((String contactId, PingData pingData) {
+      sortedList.add(ContactWithPing(
+        contact: _datas.contacts[contactId].contact,
+        ping: pingData,
+      ));
+    });
+    //then add missing contacts
+    //cause it's possible a contact doesn't have
+    //a ping data from firebase
+    _datas.contacts.forEach((
+      String contactId,
+      ContactWithPing contactWithPing,
+    ) {
+      if (pings[contactId] == null) {
+        sortedList.add(contactWithPing);
+      }
+    });
+    return sortedList;
+  }
+
   Future<bool> pingContact(String contactId, String message) async {
     final ContactWithPing element = _datas.contacts[contactId];
     _sendSMS(message, <String>[element.contact.phones.first.value]);
@@ -72,11 +140,24 @@ class ContactAPI extends ChangeNotifier {
       );
     }
 
+    //update local stats
     _datas.totalPings += 1;
     _datas.lastPing = DateTime.now();
     _datas.contacts[contactId] = element;
+    if (!_datas.contactPinged.contains(contactId)) {
+      _datas.contactPinged.add(contactId);
+    }
+
     //update firestore
-    setGlobalPingStats(_datas.totalPings, _datas.lastPing);
+    setGlobalPingStats(
+      _datas.totalPings,
+      _datas.lastPing,
+      _datas.contactPinged,
+    );
+    setPingDataForContact(
+      contactId,
+      element.ping,
+    );
     notifyListeners();
     return true;
   }
