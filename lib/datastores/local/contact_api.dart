@@ -3,22 +3,28 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:Tech_flutter/datastores/cloud/pings_store.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 
+export 'package:Tech_flutter/datastores/cloud/pings_store.dart';
+
 class ContactWithPing {
   ContactWithPing({this.contact, this.ping});
   Contact contact;
   PingData ping;
 }
 
-class GloablContactDatas {
-  //contactId, ContactWithPing
+class GlobalContactDatas {
+  int totalPings = 0;
+  DateTime lastPing;
+  int contactsPinged; //not implemented
+  int contactsNotPinged; //not implemented
+  Contact lastContactPinged; //not implemented
   Map<String, ContactWithPing> contacts = <String, ContactWithPing>{};
 }
 
 class ContactAPI extends ChangeNotifier {
-  GloablContactDatas _datas;
+  GlobalContactDatas _datas;
 
   Future<void> initialize() async {
-    _datas = GloablContactDatas();
+    _datas = GlobalContactDatas();
     //lunch both query in parallel
     final List<dynamic> datas = await Future.wait<dynamic>(<Future<dynamic>>[
       ContactsService.getContacts(withThumbnails: false),
@@ -26,6 +32,9 @@ class ContactAPI extends ChangeNotifier {
     ]);
     final Iterable<Contact> contacts = datas[0] as Iterable<Contact>;
     final GlobalPingsData pingsDatas = datas[1] as GlobalPingsData;
+
+    _datas.totalPings = pingsDatas.totalPings;
+    _datas.lastPing = pingsDatas.lastPing;
 
     for (final Contact contact in contacts) {
       _datas.contacts[contact.identifier] = ContactWithPing(
@@ -35,7 +44,7 @@ class ContactAPI extends ChangeNotifier {
     }
   }
 
-  Future<GloablContactDatas> get contacts async {
+  Future<GlobalContactDatas> get contacts async {
     if (_datas == null) {
       await initialize();
     }
@@ -63,9 +72,11 @@ class ContactAPI extends ChangeNotifier {
       );
     }
 
+    _datas.totalPings += 1;
+    _datas.lastPing = DateTime.now();
     _datas.contacts[contactId] = element;
     //update firestore
-    setPingDataForContact(contactId, element.ping);
+    setGlobalPingStats(_datas.totalPings, _datas.lastPing);
     notifyListeners();
     return true;
   }

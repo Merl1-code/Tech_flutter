@@ -26,15 +26,33 @@ Map<String, dynamic> _pingDataToDocField(PingData ping) {
 Future<GlobalPingsData> userPingsDatas() async {
   final GlobalPingsData globalPings = GlobalPingsData();
   final String userId = FirebaseAuth.instance.currentUser.uid;
-  final QuerySnapshot query = await FirebaseFirestore.instance
-      .collection('userPings/$userId/pings')
-      .get();
 
-  if (query.docs.isNotEmpty) {
-    for (final DocumentSnapshot doc in query.docs) {
-      globalPings.pings[doc.id] = _docToPingData(doc);
+  try {
+    final List<dynamic> futures = await Future.wait<dynamic>(<Future<dynamic>>[
+      FirebaseFirestore.instance.collection('userPings/$userId/pings').get(),
+      FirebaseFirestore.instance.collection('userPings').doc(userId).get()
+    ]);
+
+    //pings
+    final QuerySnapshot pingsQuery = futures[0] as QuerySnapshot;
+    if (pingsQuery.docs.isNotEmpty) {
+      for (final DocumentSnapshot doc in pingsQuery.docs) {
+        globalPings.pings[doc.id] = _docToPingData(doc);
+      }
     }
+
+    //stats
+    final DocumentSnapshot statsDocument = futures[1] as DocumentSnapshot;
+    if (statsDocument.exists) {
+      final Timestamp t = statsDocument['lastPing'] as Timestamp;
+      globalPings.lastPing = t.toDate();
+      globalPings.totalPings = statsDocument['totalPings'] as int;
+    }
+  } catch (e) {
+    print(e);
+    return globalPings;
   }
+
   return globalPings;
 }
 
@@ -53,6 +71,25 @@ Future<PingData> userPingsDatasForContact(String contactId) async {
 }
 
 Future<bool> newPingData() async {
+  return true;
+}
+
+Future<bool> setGlobalPingStats(
+  int totalPingNumber,
+  DateTime lastPingTime,
+) async {
+  final String userId = FirebaseAuth.instance.currentUser.uid;
+  try {
+    await FirebaseFirestore.instance
+        .collection('userPings/')
+        .doc(userId)
+        .set(<String, dynamic>{
+      'totalPings': totalPingNumber,
+      'lastPing': lastPingTime,
+    });
+  } catch (e) {
+    return false;
+  }
   return true;
 }
 
