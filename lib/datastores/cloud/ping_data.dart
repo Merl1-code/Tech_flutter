@@ -1,13 +1,7 @@
 class GlobalPingsData {
-  GlobalPingsData({
-    this.userId,
-    this.totalPings,
-    this.lastPing,
-  });
-
-  int userId;
-  int totalPings;
+  int totalPings = 0;
   DateTime lastPing;
+  List<String> contactPinged = <String>[];
 
   //contactId: pingData
   Map<String, PingData> pings = <String, PingData>{};
@@ -19,6 +13,6 @@ class PingData {
     this.lastPing,
   });
 
-  int totalPing;
+  int totalPing = 0;
   DateTime lastPing;
 }

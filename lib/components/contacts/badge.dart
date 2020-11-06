@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
 class Badge extends StatelessWidget {
+  const Badge({this.title = 'Title', this.text = 'Text'});
+  final String title;
+  final String text;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,9 +19,9 @@ class Badge extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Title', style: theme.texts.badgeTitle),
+          Text(title, style: theme.texts.badgeTitle),
           Text(
-            'Body of the statistic bitch',
+            text,
             style: theme.texts.badgeText,
           ),
         ],

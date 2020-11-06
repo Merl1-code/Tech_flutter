@@ -9,8 +9,7 @@ class ContactCard extends StatelessWidget {
   final String last;
   final void Function() onPressed;
 
-  String getMonth(String nb)
-  {
+  String getMonth(String nb) {
     if (nb == '01')
       return 'January';
     else if (nb == '02')
@@ -33,8 +32,7 @@ class ContactCard extends StatelessWidget {
       return 'October';
     else if (nb == '11')
       return 'November';
-    else if (nb == '12')
-      return 'December';
+    else if (nb == '12') return 'December';
     return nb;
   }
 
@@ -50,20 +48,24 @@ class ContactCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-         CircleAvatar(
-        radius: 35,
-        backgroundColor: const Color(0xFFB283FC),
-        child:  (photo != null && photo.isNotEmpty)
-            ? CircleAvatar(
-          radius: 32,
-          backgroundImage: MemoryImage(photo),
-          backgroundColor: null,
-        ) : CircleAvatar(
-          child: Text(name[0], style: const TextStyle(backgroundColor: null),),
-          radius: 32,
-          backgroundColor: null,
-        ),
-      ),
+          CircleAvatar(
+            radius: 35,
+            backgroundColor: const Color(0xFFB283FC),
+            child: (photo != null && photo.isNotEmpty)
+                ? CircleAvatar(
+                    radius: 32,
+                    backgroundImage: MemoryImage(photo),
+                    backgroundColor: null,
+                  )
+                : CircleAvatar(
+                    child: Text(
+                      name[0],
+                      style: const TextStyle(backgroundColor: null),
+                    ),
+                    radius: 32,
+                    backgroundColor: null,
+                  ),
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,7 +86,13 @@ class ContactCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Text>[
                   Text(
-                      (last == 'Never being pinged') ? (' ' + last + ' ') : (last.split('-')[2].substring(0, 2) + ' ' + getMonth(last.split('-')[1]) + ' ' + last.split('-')[0]),
+                    (last == 'Never being pinged')
+                        ? (' ' + last + ' ')
+                        : (last.split('-')[2].substring(0, 2) +
+                            ' ' +
+                            getMonth(last.split('-')[1]) +
+                            ' ' +
+                            last.split('-')[0]),
                     style: const TextStyle(
                         fontSize: 12,
                         color: Color(0xFFB283FC),
@@ -92,7 +100,8 @@ class ContactCard extends StatelessWidget {
                   ),
                   Text(
                     (last == 'Never being pinged') ? '' : ', pinged ',
-                    style: const TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
+                    style:
+                        const TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
                   ),
                   Text(
                     (last == 'Never being pinged') ? '' : last.split('x')[1],
@@ -102,8 +111,11 @@ class ContactCard extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    (last == 'Never being pinged') ? '' : (last.split('x')[1] == '1' ? ' time' : ' times'),
-                    style: const TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
+                    (last == 'Never being pinged')
+                        ? ''
+                        : (last.split('x')[1] == '1' ? ' time' : ' times'),
+                    style:
+                        const TextStyle(fontSize: 12, color: Color(0xFFC2AEE2)),
                   ),
                 ],
               ),
