@@ -6,22 +6,23 @@ import 'package:flutter_sms/flutter_sms.dart';
 class ContactWithPing {
   ContactWithPing({this.contact, this.ping});
   Contact contact;
+  MemoryImage image;
   PingData ping;
 }
 
-class GloablContactDatas {
+class GlobalContactDatas {
   //contactId, ContactWithPing
   Map<String, ContactWithPing> contacts = <String, ContactWithPing>{};
 }
 
 class ContactAPI extends ChangeNotifier {
-  GloablContactDatas _datas;
+  GlobalContactDatas _datas;
 
   Future<void> initialize() async {
-    _datas = GloablContactDatas();
+    _datas = GlobalContactDatas();
     //lunch both query in parallel
     final List<dynamic> datas = await Future.wait<dynamic>(<Future<dynamic>>[
-      ContactsService.getContacts(withThumbnails: false),
+      ContactsService.getContacts(),
       userPingsDatas(),
     ]);
     final Iterable<Contact> contacts = datas[0] as Iterable<Contact>;
@@ -35,7 +36,7 @@ class ContactAPI extends ChangeNotifier {
     }
   }
 
-  Future<GloablContactDatas> get contacts async {
+  Future<GlobalContactDatas> get contacts async {
     if (_datas == null) {
       await initialize();
     }

@@ -23,8 +23,7 @@ class ContactListState extends State<ContactList> {
     return ContactCard(
       name: contactData.contact.displayName,
       last: tmp,
-      photo:
-          'https://scontent-rtl.akamaized.net/GED/09670000/9677800/9677861_700x0.webp',
+      photo: contactData.contact.avatar,
       onPressed: () {
         api.pingContact(contactData.contact.identifier, '<3');
       },
@@ -38,11 +37,11 @@ class ContactListState extends State<ContactList> {
       ContactAPI contactAPI,
       Widget child,
     ) {
-      return FutureBuilder<GloablContactDatas>(
+      return FutureBuilder<GlobalContactDatas>(
         future: contactAPI.contacts,
         builder: (
           BuildContext context,
-          AsyncSnapshot<GloablContactDatas> contactSnapshot,
+          AsyncSnapshot<GlobalContactDatas> contactSnapshot,
         ) {
           if (contactSnapshot.connectionState == ConnectionState.waiting) {
             return const Center(
