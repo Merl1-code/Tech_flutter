@@ -2,34 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
 class Avatar extends StatelessWidget {
-  const Avatar({this.size = 100, this.borderSize = 3});
+  const Avatar({
+    @required this.lastPing,
+    this.size = 100,
+    this.borderSize = 3,
+    this.borderColor = Colors.blue,
+  });
 
+  final DateTime lastPing;
   final double size;
   final double borderSize;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
-    final Widget time = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          '35',
-          style: theme.texts.avatarBold,
-        ),
-        Text(
-          'h',
-          style: theme.texts.avatar,
-        ),
-        Text(
-          '35',
-          style: theme.texts.avatarBold,
-        ),
-        Text(
-          'min',
-          style: theme.texts.avatar,
-        ),
-      ],
-    );
+    String pingTime = '${lastPing.day}/${lastPing.month}/${lastPing.year}';
+    final DateTime today = DateTime.now();
+    if (lastPing.day == today.day &&
+        lastPing.month == today.month &&
+        lastPing.year == today.year) {
+      pingTime = '${lastPing.hour}h${lastPing.minute}';
+    }
 
     return SizedBox(
       height: size,
@@ -51,7 +44,7 @@ class Avatar extends StatelessWidget {
                     Radius.circular(size),
                   ),
                   border: Border.all(
-                    color: theme.colors.background,
+                    color: borderColor,
                     width: borderSize,
                   ),
                 ),
@@ -61,7 +54,10 @@ class Avatar extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          time,
+          Text(
+            pingTime,
+            style: theme.texts.avatarBold,
+          ),
         ],
       ),
     );

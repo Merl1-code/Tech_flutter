@@ -70,15 +70,12 @@ class ContactAPI extends ChangeNotifier {
     //add sorted pings datas with associated
     //contacted saved in loacl contact hash table
     pings.forEach((String contactId, PingData pingData) {
-      print(_datas.contacts.length);
-
       try {
         sortedList.add(ContactWithPing(
           contact: _datas.contacts[contactId].contact,
           ping: pingData,
         ));
       } catch (e) {
-        print("Ha ?");
         print(e);
       }
     });
@@ -107,10 +104,14 @@ class ContactAPI extends ChangeNotifier {
     //add sorted pings datas with associated
     //contacted saved in loacl contact hash table
     pings.forEach((String contactId, PingData pingData) {
-      sortedList.add(ContactWithPing(
-        contact: _datas.contacts[contactId].contact,
-        ping: pingData,
-      ));
+      try {
+        sortedList.add(ContactWithPing(
+          contact: _datas.contacts[contactId].contact,
+          ping: pingData,
+        ));
+      } catch (e) {
+        print(e);
+      }
     });
     //then add missing contacts
     //cause it's possible a contact doesn't have

@@ -60,21 +60,6 @@ class ContactListState extends State<ContactList> {
             );
           },
         );
-        final List<ContactWithPing> contactList = data.contacts.values.toList();
-
-        return ListView.separated(
-          padding: theme.spacings.bodyPadding,
-          physics: const BouncingScrollPhysics(),
-          itemCount: contactList.length,
-          cacheExtent: 1,
-          itemBuilder: (BuildContext context, int index) => _renderContact(
-            api,
-            contactList[index],
-          ),
-          separatorBuilder: (BuildContext context, int index) {
-            return const SizedBox(height: 13);
-          },
-        );
       },
     );
   }
