@@ -30,7 +30,8 @@ class Home extends StatelessWidget {
       return 'October';
     else if (nb == 11)
       return 'November';
-    else if (nb == 12) return 'December';
+    else if (nb == 12)
+      return 'December';
     return nb.toString();
   }
 
@@ -46,6 +47,8 @@ class Home extends StatelessWidget {
         widgets.add(
           Avatar(
             lastPing: contacts[idx].ping.lastPing,
+            photo: contacts[idx].contact.avatar,
+            initial: contacts[idx].contact.initials(),
             size: sizes[idx],
             borderColor:
                 idx == 0 ? theme.colors.primary : theme.colors.background,

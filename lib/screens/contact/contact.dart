@@ -41,9 +41,7 @@ class ContactListState extends State<ContactList> {
           ) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.red,
-                ),
+                child: CircularProgressIndicator(),
               );
             }
 

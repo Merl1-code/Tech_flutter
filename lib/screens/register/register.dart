@@ -103,7 +103,7 @@ class RegisterState extends State<Register> {
                         EmailField(
                             controller: verifEmailController,
                             validator: (String value) {
-                              if (value != emailController.value.toString()) {
+                              if (value != emailController.value.text) {
                                 return 'Emails doesn\'t match';
                               }
                               return null;
@@ -117,7 +117,7 @@ class RegisterState extends State<Register> {
                         PasswordField(
                           controller: verifPasswordController,
                           validator: (String value) {
-                            if (value != passwordController.value.toString()) {
+                            if (value != passwordController.value.text) {
                               return 'Password doesn\'t math';
                             }
                             return null;

@@ -1,15 +1,21 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
 class Avatar extends StatelessWidget {
   const Avatar({
     @required this.lastPing,
+    @required this.photo,
+    this.initial = '',
     this.size = 100,
     this.borderSize = 3,
     this.borderColor = Colors.blue,
   });
 
   final DateTime lastPing;
+  final Uint8List photo;
+  final String initial;
   final double size;
   final double borderSize;
   final Color borderColor;
@@ -34,11 +40,9 @@ class Avatar extends StatelessWidget {
               aspectRatio: 1,
               child: Container(
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(
-                      'https://scontent-rtl.akamaized.net/GED/09670000/9677800/9677861_700x0.webp',
-                    ),
+                    image: MemoryImage(photo)
                   ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(size),
@@ -48,6 +52,7 @@ class Avatar extends StatelessWidget {
                     width: borderSize,
                   ),
                 ),
+                child: photo.isEmpty ? Text(initial) : null,
               ),
             ),
           ),

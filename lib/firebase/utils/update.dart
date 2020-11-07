@@ -1,21 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-Future<void> updatePassword(String password) async {
+Future<String> updatePassword(String password) async {
   final User user = FirebaseAuth.instance.currentUser;
 
   user.updatePassword(password).then((_) {
-    print('Succesfull changed password');
+    return 'Succesfull changed password';
   }).catchError((dynamic error) {
-    print('Password can\'t be changed' + error.toString());
+    return 'Password can\'t be changed' + error.toString();
   });
+  return '';
 }
 
-Future<void> updateEmail(String email) async {
+Future<String> updateEmail(String email) async {
   final User user = FirebaseAuth.instance.currentUser;
 
   user.updateEmail(email).then((_) {
-    print('Succesfull changed email');
+    return 'Successfully changed email';
   }).catchError((dynamic error) {
-    print('Email can\'t be changed' + error.toString());
+    return 'Email can\'t be changed' + error.toString();
   });
+  return '';
 }

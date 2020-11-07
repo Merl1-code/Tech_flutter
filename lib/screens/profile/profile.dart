@@ -2,6 +2,7 @@ import 'package:Tech_flutter/components/buttons/all.dart';
 import 'package:Tech_flutter/components/forms/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/firebase/utils/logout.dart';
+import 'package:Tech_flutter/firebase/utils/update.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
 class Profil extends StatefulWidget {
@@ -9,19 +10,15 @@ class Profil extends StatefulWidget {
   _ProfilState createState() => _ProfilState();
 }
 
-Future<String> asyncRegister(
-  String email,
-  String password,
-  BuildContext context,
-) async {
-  const String res = '';
-//  final Result res =
-//  await modifyUserWithEmailAndPassword(email: email, password: password);
-//  if (res.success) {
-//    Navigator.popUntil(context, ModalRoute.withName('/'));
-//    Navigator.popAndPushNamed(context, '/authenticated');
-//  }
-//  return res.message;
+Future<String> asyncModifyEmail(String email) async {
+  final String res =
+  await updateEmail(email);
+  return res;
+}
+
+Future<String> asyncModifyPassword(String password) async {
+  final String res =
+  await updatePassword(password);
   return res;
 }
 
@@ -32,6 +29,9 @@ class _ProfilState extends State<Profil> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController verifEmailController = TextEditingController();
   final TextEditingController verifPasswordController = TextEditingController();
+
+  String modifyPasswordString = '';
+  String modifyEmailString = '';
 
   @override
   void dispose() {
@@ -44,14 +44,15 @@ class _ProfilState extends State<Profil> {
   }
 
   void _validateForm() {
-    if (_formKey.currentState.validate() != null &&
-        emailController.text == verifEmailController.text &&
-        passwordController.text == verifPasswordController.text) {
-      asyncRegister(
-        emailController.text,
-        passwordController.text,
-        context,
-      );
+    if (_formKey.currentState.validate() != null) {
+      if (emailController.text == verifEmailController.text && emailController.value.text.isNotEmpty)
+        asyncModifyEmail(emailController.text).then((String value) => setState(() {
+          modifyEmailString = value;
+        }));
+      if (passwordController.text == verifPasswordController.text && passwordController.value.text.isNotEmpty)
+        asyncModifyPassword(passwordController.text).then((String value) => setState(() {
+          modifyPasswordString = value;
+        }));
     }
   }
 
@@ -65,7 +66,7 @@ class _ProfilState extends State<Profil> {
             children: <Widget>[
               FittedBox(
                 child: Text(
-                  'Modify profil',
+                  'Modify Email',
                   style: theme.texts.subtitle,
                 ),
               ),
@@ -79,12 +80,22 @@ class _ProfilState extends State<Profil> {
                       controller: emailController,
                       textColor: Colors.white,
                       backgroundColor: theme.colors.background,
+                      validator: (String value) {
+                        if (value.isEmpty && passwordController.value.text.isEmpty) {
+                          return 'Please enter an email';
+                        } else if (!RegExp(
+                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(value) && value.isNotEmpty) {
+                          return 'Email is incorrect';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 15.0),
                     EmailField(
                       controller: verifEmailController,
                       validator: (String value) {
-                        if (value != emailController.value.toString()) {
+                        if (value != emailController.value.text) {
                           return 'Emails doesn\'t match';
                         }
                         return null;
@@ -93,17 +104,32 @@ class _ProfilState extends State<Profil> {
                       textColor: Colors.white,
                       backgroundColor: theme.colors.background,
                     ),
-                    const SizedBox(height: 15.0),
+                    const SizedBox(height: 25.0),
+                    FittedBox(
+                      child: Text(
+                        'Modify password',
+                        style: theme.texts.subtitle,
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
                     PasswordField(
                       controller: passwordController,
                       textColor: Colors.white,
                       backgroundColor: theme.colors.background,
+                      validator: (String value) {
+                        if (value.isEmpty && emailController.value.text.isEmpty) {
+                          return 'Please enter a valid password';
+                        } else if (value.length < 8 && value.isNotEmpty) {
+                          return 'Password should be at least 8 characters';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 15.0),
                     PasswordField(
                       controller: verifPasswordController,
                       validator: (String value) {
-                        if (value != passwordController.value.toString()) {
+                        if (value != passwordController.value.text) {
                           return 'Password doesn\'t math';
                         }
                         return null;
@@ -129,6 +155,19 @@ class _ProfilState extends State<Profil> {
                       backgroundColor: theme.colors.background,
                       textColor: Colors.white,
                     ),
+                    const SizedBox(height: 15.0),
+                    Text(modifyEmailString,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                    ),
+                    Text(modifyPasswordString,
+                      style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    )
                   ],
                 ),
               ),
