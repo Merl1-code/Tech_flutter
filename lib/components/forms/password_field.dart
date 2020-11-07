@@ -10,18 +10,24 @@ String _defaultValidator(String value) {
   return null;
 }
 
+const Color _defBackgroundColor = Color(0xFFC2AEE2);
+
 class PasswordField extends StatelessWidget {
   const PasswordField({
     this.controller,
     this.hint = 'Password',
     this.validator = _defaultValidator,
     this.hidden = true,
+    this.textColor = Colors.white,
+    this.backgroundColor = _defBackgroundColor,
   });
 
   final TextEditingController controller;
   final String hint;
   final String Function(String) validator;
   final bool hidden;
+  final Color textColor;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +35,8 @@ class PasswordField extends StatelessWidget {
       controller: controller,
       keyboardType: TextInputType.visiblePassword,
       obscureText: hidden,
-      textColor: Colors.white,
-      backgroundColor: const Color(0xFFC2AEE2),
+      textColor: textColor,
+      backgroundColor: backgroundColor,
       borderColor: null,
       focusColor: const Color(0xFFB283FC),
       errorColor: Colors.red,

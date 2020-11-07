@@ -4,12 +4,6 @@ import 'package:Tech_flutter/components/contacts/badge.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 import 'package:Tech_flutter/components/contact_api.dart';
 
-/**TODO
- * get stats
- * use contacts profile picture
- * change size avatar by rank
- */
-
 class Home extends StatelessWidget {
   const Home();
 
@@ -36,8 +30,7 @@ class Home extends StatelessWidget {
       return 'October';
     else if (nb == 11)
       return 'November';
-    else if (nb == 12)
-      return 'December';
+    else if (nb == 12) return 'December';
     return nb.toString();
   }
 
@@ -123,8 +116,9 @@ class Home extends StatelessWidget {
                     Badge(
                       title: 'The last one',
                       text: 'Your last ping was'
-                          ' at ${data.lastPing.hour}h${data.lastPing.minute} the'
-                          ' ${data.lastPing.day} ' + getMonth(data.lastPing.month) +
+                              ' at ${data.lastPing.hour}h${data.lastPing.minute} the'
+                              ' ${data.lastPing.day} ' +
+                          getMonth(data.lastPing.month) +
                           ' ${data.lastPing.year}.',
                     ),
                   const SizedBox(height: 21),

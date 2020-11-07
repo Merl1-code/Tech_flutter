@@ -10,10 +10,10 @@ class Profil extends StatefulWidget {
 }
 
 Future<String> asyncRegister(
-    String email,
-    String password,
-    BuildContext context,
-    ) async {
+  String email,
+  String password,
+  BuildContext context,
+) async {
   const String res = '';
 //  final Result res =
 //  await modifyUserWithEmailAndPassword(email: email, password: password);
@@ -54,13 +54,13 @@ class _ProfilState extends State<Profil> {
       );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: theme.spacings.bodyPadding,
       child: Center(
         child: Container(
-          color: Colors.blue,
           child: Column(
             children: <Widget>[
               FittedBox(
@@ -77,20 +77,27 @@ class _ProfilState extends State<Profil> {
                   children: <Widget>[
                     EmailField(
                       controller: emailController,
+                      textColor: Colors.white,
+                      backgroundColor: theme.colors.background,
                     ),
                     const SizedBox(height: 15.0),
                     EmailField(
-                        controller: verifEmailController,
-                        validator: (String value) {
-                          if (value != emailController.value.toString()) {
-                            return 'Emails doesn\'t match';
-                          }
-                          return null;
-                        },
-                        hint: 'Confirm Email'),
+                      controller: verifEmailController,
+                      validator: (String value) {
+                        if (value != emailController.value.toString()) {
+                          return 'Emails doesn\'t match';
+                        }
+                        return null;
+                      },
+                      hint: 'Confirm Email',
+                      textColor: Colors.white,
+                      backgroundColor: theme.colors.background,
+                    ),
                     const SizedBox(height: 15.0),
                     PasswordField(
                       controller: passwordController,
+                      textColor: Colors.white,
+                      backgroundColor: theme.colors.background,
                     ),
                     const SizedBox(height: 15.0),
                     PasswordField(
@@ -102,13 +109,15 @@ class _ProfilState extends State<Profil> {
                         return null;
                       },
                       hint: 'Confirm password',
+                      textColor: Colors.white,
+                      backgroundColor: theme.colors.background,
                     ),
                     const SizedBox(height: 15.0),
                     PrimaryButton(
                       text: 'Modify',
                       onPressed: _validateForm,
                     ),
-                    SecondaryButton(
+                    Button(
                       text: 'Logout',
                       onPressed: () async {
                         await logout();
@@ -117,6 +126,8 @@ class _ProfilState extends State<Profil> {
                           ModalRoute.withName('/'),
                         );
                       },
+                      backgroundColor: theme.colors.background,
+                      textColor: Colors.white,
                     ),
                   ],
                 ),
