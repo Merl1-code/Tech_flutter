@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:Tech_flutter/datastores/cloud/pings_store.dart';
 import 'package:flutter_sms/flutter_sms.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 export 'package:Tech_flutter/datastores/cloud/pings_store.dart';
 
@@ -162,5 +164,29 @@ class ContactAPI extends ChangeNotifier {
     );
     notifyListeners();
     return true;
+  }
+
+  Future<String> getPofilPicture() async {
+    final String userId = FirebaseAuth.instance.currentUser.uid;
+
+    final DocumentSnapshot doc = await FirebaseFirestore.instance
+        .collection('profilPictures')
+        .doc(userId)
+        .get();
+
+    final String picture = doc['picture'] as String;
+    return picture;
+  }
+
+  Future<void> setPofilPicture(String picture) async {
+    final String userId = FirebaseAuth.instance.currentUser.uid;
+
+    await FirebaseFirestore.instance
+        .collection('profilPictures')
+        .doc(userId)
+        .set(
+      <String, String>{'picture': picture},
+    );
+    notifyListeners();
   }
 }
