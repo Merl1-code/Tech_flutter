@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 Future<String> updatePassword(String password) async {
@@ -20,4 +21,27 @@ Future<String> updateEmail(String email) async {
     return 'Email can\'t be changed' + error.toString();
   });
   return answer;
+}
+
+Future<String> getProfilPicture() async {
+  final String userId = FirebaseAuth.instance.currentUser.uid;
+
+  final DocumentSnapshot doc = await FirebaseFirestore.instance
+      .collection('profilPictures')
+      .doc(userId)
+      .get();
+
+  final String picture = doc['picture'] as String;
+  return picture;
+}
+
+Future<void> setProfilPicture(String picture) async {
+  final String userId = FirebaseAuth.instance.currentUser.uid;
+
+  await FirebaseFirestore.instance
+      .collection('profilPictures')
+      .doc(userId)
+      .set(
+    <String, String>{'picture': picture},
+  );
 }

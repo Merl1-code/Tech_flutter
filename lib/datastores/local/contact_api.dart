@@ -165,28 +165,4 @@ class ContactAPI extends ChangeNotifier {
     notifyListeners();
     return true;
   }
-
-  Future<String> getPofilPicture() async {
-    final String userId = FirebaseAuth.instance.currentUser.uid;
-
-    final DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection('profilPictures')
-        .doc(userId)
-        .get();
-
-    final String picture = doc['picture'] as String;
-    return picture;
-  }
-
-  Future<void> setPofilPicture(String picture) async {
-    final String userId = FirebaseAuth.instance.currentUser.uid;
-
-    await FirebaseFirestore.instance
-        .collection('profilPictures')
-        .doc(userId)
-        .set(
-      <String, String>{'picture': picture},
-    );
-    notifyListeners();
-  }
 }

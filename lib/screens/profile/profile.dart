@@ -5,6 +5,7 @@ import 'package:Tech_flutter/components/forms/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/firebase/utils/logout.dart';
 import 'package:Tech_flutter/firebase/utils/update.dart';
+import 'package:Tech_flutter/datastores/local/contact_api.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
@@ -38,6 +39,12 @@ class _ProfilState extends State<Profil> {
   String modifyEmailString = '';
 
   @override
+  void initState() {
+    getImage();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
     emailController.dispose();
@@ -65,6 +72,16 @@ class _ProfilState extends State<Profil> {
   }
 
   Future<void> getImage() async {
+    final String pic = await getProfilPicture();
+
+    setState(() {
+      if (pic.isNotEmpty) {
+        _image = File(pic.substring(pic.indexOf('\'') + 1, pic.lastIndexOf('\'')));
+      }
+    });
+  }
+
+  Future<void> setImage() async {
     final PickedFile pickedFile =
         await picker.getImage(source: ImageSource.camera);
 
@@ -75,6 +92,7 @@ class _ProfilState extends State<Profil> {
         print('No image selected.');
       }
     });
+    setProfilPicture(_image.toString());
   }
 
   @override
@@ -172,7 +190,7 @@ class _ProfilState extends State<Profil> {
                         textColor: Colors.white,
                         backgroundColor: theme.colors.background,
                       ),
-                      const SizedBox(height: 15.0),
+                      const SizedBox(height: 20.0),
                       PrimaryButton(
                         text: 'Modify',
                         onPressed: _validateForm,
@@ -180,7 +198,7 @@ class _ProfilState extends State<Profil> {
                       const SizedBox(height: 8.0),
                       Button(
                         text: 'Add Picture',
-                        onPressed: getImage,
+                        onPressed: setImage,
                         backgroundColor: theme.colors.background,
                         textColor: Colors.white,
                       ),
