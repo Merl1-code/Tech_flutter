@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:Tech_flutter/components/buttons/all.dart';
 import 'package:Tech_flutter/components/forms/fields.dart';
 import 'package:flutter/material.dart';
 import 'package:Tech_flutter/firebase/utils/logout.dart';
 import 'package:Tech_flutter/firebase/utils/update.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:Tech_flutter/theme.dart' as theme;
 
 class Profil extends StatefulWidget {
@@ -23,6 +26,9 @@ Future<String> asyncModifyPassword(String password) async {
 }
 
 class _ProfilState extends State<Profil> {
+  File _image;
+  final picker = ImagePicker();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController emailController = TextEditingController();
@@ -56,6 +62,18 @@ class _ProfilState extends State<Profil> {
     }
   }
 
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -64,6 +82,14 @@ class _ProfilState extends State<Profil> {
         child: Container(
           child: Column(
             children: <Widget>[
+              Center(
+                child: _image == null
+                    ? const Text('No image selected.')
+                    : Image.file(_image),
+              ),
+              Button(
+                onPressed: getImage, text: 'photo',
+              ),
               FittedBox(
                 child: Text(
                   'Modify Email',

@@ -35,6 +35,7 @@ dependencies:
     permission_handler: ^5.0.1+1
     provider: ^4.3.2+2
     flutter_sms: 1.1.0
+    image_picker: ^0.6.7+12
 dev_dependencies:
     flutter_test:
         sdk: flutter
