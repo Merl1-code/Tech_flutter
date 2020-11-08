@@ -15,8 +15,6 @@ class UseFirebase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("hello firebase");
-
     return FutureBuilder<FirebaseApp>(
         future: Firebase.initializeApp(),
         builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
