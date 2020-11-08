@@ -15,4 +15,4 @@ Friend Reminder vous permet d'envoyer de l'amour à vos amis tout en étant Covi
 
     flutter build apk
 
-votre application est généré dans le dossier **_build/app/outputs/apk/output.json_**
+votre application est générée dans le dossier **_build/app/outputs/apk/output.json_**
