@@ -38,7 +38,8 @@ class Home extends StatelessWidget {
   List<Widget> _renderAvatars(List<ContactWithPing> contacts) {
     final List<Widget> widgets = <Widget>[];
     const List<int> indexes = <int>[1, 0, 2];
-    const List<double> sizes = <double>[100, 80, 80];
+    const List<double> sizes = <double>[35, 33, 30];
+    const List<Color> avatarColor = <Color>[Color(0xFFFFD700), Color(0xFFC0C0C0), Color(0xFF895E1A)];
 
     for (final int idx in indexes) {
       if (contacts != null &&
@@ -50,8 +51,7 @@ class Home extends StatelessWidget {
             photo: contacts[idx].contact.avatar,
             initial: contacts[idx].contact.initials(),
             size: sizes[idx],
-            borderColor:
-                idx == 0 ? theme.colors.primary : theme.colors.background,
+            borderColor: avatarColor[idx],
           ),
         );
       }

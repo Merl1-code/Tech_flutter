@@ -51,7 +51,7 @@ class ContactCard extends StatelessWidget {
         children: <Widget>[
           CircleAvatar(
             radius: 35,
-            backgroundColor: const Color(0xFFB283FC),
+            backgroundColor: Colors.white,
             child: (photo != null && photo.isNotEmpty)
                 ? CircleAvatar(
                     radius: 32,
@@ -61,10 +61,10 @@ class ContactCard extends StatelessWidget {
                 : CircleAvatar(
                     child: Text(
                       name[0],
-                      style: const TextStyle(backgroundColor: null),
+                      style: const TextStyle(backgroundColor: null, fontSize: 20),
                     ),
                     radius: 32,
-                    backgroundColor: null,
+                    backgroundColor: const Color(0xFFB283FC),
                   ),
           ),
           Column(

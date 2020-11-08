@@ -8,9 +8,10 @@ class Avatar extends StatelessWidget {
     @required this.lastPing,
     @required this.photo,
     this.initial = '',
-    this.size = 100,
+    this.size = 35,
     this.borderSize = 3,
     this.borderColor = Colors.blue,
+    this.maxSize = 45
   });
 
   final DateTime lastPing;
@@ -19,6 +20,7 @@ class Avatar extends StatelessWidget {
   final double size;
   final double borderSize;
   final Color borderColor;
+  final double maxSize;
 
   @override
   Widget build(BuildContext context) {
@@ -30,41 +32,33 @@ class Avatar extends StatelessWidget {
       pingTime = '${lastPing.hour}h${lastPing.minute}';
     }
 
-    return SizedBox(
-      height: size,
-      width: size,
-      child: Column(
-        children: <Widget>[
-          Expanded(
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: MemoryImage(photo)
-                  ),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(size),
-                  ),
-                  border: Border.all(
-                    color: borderColor,
-                    width: borderSize,
-                  ),
-                ),
-                child: photo.isEmpty ? Text(initial) : null,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            pingTime,
-            style: theme.texts.avatarBold,
-          ),
-        ],
+    return Column(
+       children: <Widget>[
+         SizedBox(height: maxSize - (size + borderSize),), //Formule pour aligner les dates par rapport a leur size
+      CircleAvatar(
+      radius: size + borderSize,
+      backgroundColor: borderColor,
+      child: (photo.isNotEmpty)
+          ? CircleAvatar(
+        radius: size,
+        backgroundImage: MemoryImage(photo),
+        backgroundColor: null,
+      )
+          : CircleAvatar(
+        child: Text(
+          initial,
+          style: const TextStyle(backgroundColor: null, fontSize: 20),
+        ),
+        radius: size,
+        backgroundColor: const Color(0xFFB283FC),
       ),
+    ),
+         SizedBox(height: maxSize - (size + borderSize),), //Formule pour aligner les dates par rapport a leur size
+         Text(
+           pingTime,
+           style: theme.texts.avatarBold,
+         ),
+        ],
     );
   }
 }
