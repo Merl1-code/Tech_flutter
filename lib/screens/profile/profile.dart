@@ -14,20 +14,18 @@ class Profil extends StatefulWidget {
 }
 
 Future<String> asyncModifyEmail(String email) async {
-  final String res =
-  await updateEmail(email);
+  final String res = await updateEmail(email);
   return res;
 }
 
 Future<String> asyncModifyPassword(String password) async {
-  final String res =
-  await updatePassword(password);
+  final String res = await updatePassword(password);
   return res;
 }
 
 class _ProfilState extends State<Profil> {
   File _image;
-  final picker = ImagePicker();
+  final ImagePicker picker = ImagePicker();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -51,19 +49,24 @@ class _ProfilState extends State<Profil> {
 
   void _validateForm() {
     if (_formKey.currentState.validate() != null) {
-      if (emailController.text == verifEmailController.text && emailController.value.text.isNotEmpty)
-        asyncModifyEmail(emailController.text).then((String value) => setState(() {
-          modifyEmailString = value;
-        }));
-      if (passwordController.text == verifPasswordController.text && passwordController.value.text.isNotEmpty)
-        asyncModifyPassword(passwordController.text).then((String value) => setState(() {
-          modifyPasswordString = value;
-        }));
+      if (emailController.text == verifEmailController.text &&
+          emailController.value.text.isNotEmpty)
+        asyncModifyEmail(emailController.text)
+            .then((String value) => setState(() {
+                  modifyEmailString = value;
+                }));
+      if (passwordController.text == verifPasswordController.text &&
+          passwordController.value.text.isNotEmpty)
+        asyncModifyPassword(passwordController.text)
+            .then((String value) => setState(() {
+                  modifyPasswordString = value;
+                }));
     }
   }
 
   Future<void> getImage() async {
-    final PickedFile pickedFile = await picker.getImage(source: ImageSource.camera);
+    final PickedFile pickedFile =
+        await picker.getImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
@@ -86,7 +89,10 @@ class _ProfilState extends State<Profil> {
                 Center(
                   child: _image == null
                       ? const Text('No profile image set.')
-                      : CircleAvatar(backgroundImage: Image.file(_image).image, radius: 100,),
+                      : CircleAvatar(
+                          backgroundImage: Image.file(_image).image,
+                          radius: 100,
+                        ),
                 ),
                 const SizedBox(height: 15.0),
                 FittedBox(
@@ -106,11 +112,13 @@ class _ProfilState extends State<Profil> {
                         textColor: Colors.white,
                         backgroundColor: theme.colors.background,
                         validator: (String value) {
-                          if (value.isEmpty && passwordController.value.text.isEmpty) {
+                          if (value.isEmpty &&
+                              passwordController.value.text.isEmpty) {
                             return 'Please enter an email';
                           } else if (!RegExp(
-                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(value) && value.isNotEmpty) {
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value) &&
+                              value.isNotEmpty) {
                             return 'Email is incorrect';
                           }
                           return null;
@@ -142,7 +150,8 @@ class _ProfilState extends State<Profil> {
                         textColor: Colors.white,
                         backgroundColor: theme.colors.background,
                         validator: (String value) {
-                          if (value.isEmpty && emailController.value.text.isEmpty) {
+                          if (value.isEmpty &&
+                              emailController.value.text.isEmpty) {
                             return 'Please enter a valid password';
                           } else if (value.length < 8 && value.isNotEmpty) {
                             return 'Password should be at least 8 characters';
@@ -184,18 +193,21 @@ class _ProfilState extends State<Profil> {
                             context,
                             ModalRoute.withName('/'),
                           );
+                          Navigator.pushNamed(context, '/');
                         },
                         backgroundColor: Colors.white,
                         textColor: Colors.black,
                       ),
                       const SizedBox(height: 15.0),
-                      Text(modifyEmailString,
+                      Text(
+                        modifyEmailString,
                         style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                            fontSize: 12,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
                       ),
-                      Text(modifyPasswordString,
+                      Text(
+                        modifyPasswordString,
                         style: const TextStyle(
                             fontSize: 12,
                             color: Colors.white,

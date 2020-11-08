@@ -15,6 +15,8 @@ class UseFirebase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("hello firebase");
+
     return FutureBuilder<FirebaseApp>(
         future: Firebase.initializeApp(),
         builder: (BuildContext context, AsyncSnapshot<FirebaseApp> snapshot) {
@@ -22,7 +24,8 @@ class UseFirebase extends StatelessWidget {
               const Settings(persistenceEnabled: false);
 
           if (snapshot.hasError) {
-            print('error');
+            print('Firebase have error :(');
+            print(snapshot.error);
             return error;
           }
 
