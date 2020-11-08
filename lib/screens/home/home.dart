@@ -30,7 +30,9 @@ class Home extends StatelessWidget {
       return 'October';
     else if (nb == 11)
       return 'November';
-    else if (nb == 12) return 'December';
+    else if (nb == 12) {
+      return 'December';
+    }
     return nb.toString();
   }
 
