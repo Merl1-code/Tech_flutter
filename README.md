@@ -1,11 +1,11 @@
-# Tech_flutter
-
-Project Epitech de 5ème année: découverte de flutter
-
 # Friend Reminder
 
 Friend reminder est une une petite applictaion vous permettant de "pinguer" vos contacts
 et de visualiser vos contacts les plus pingués !
+
+Friend Reminder vous permet d'envoyer de l'amour à vos amis tout en étant Covid-fiendly !
+
+**_<3<3<3_**
 
 # Developpement
 
