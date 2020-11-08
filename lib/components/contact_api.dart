@@ -29,9 +29,7 @@ class ContactAPIProvider extends StatelessWidget {
           ) {
             if (contactSnapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                child: CircularProgressIndicator(
-                  backgroundColor: Colors.red,
-                ),
+                child: CircularProgressIndicator(),
               );
             } else if (contactSnapshot.hasError) {
               return const Text('ContactAPI error :(');

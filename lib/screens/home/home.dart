@@ -30,8 +30,7 @@ class Home extends StatelessWidget {
       return 'October';
     else if (nb == 11)
       return 'November';
-    else if (nb == 12)
-      return 'December';
+    else if (nb == 12) return 'December';
     return nb.toString();
   }
 
@@ -39,7 +38,11 @@ class Home extends StatelessWidget {
     final List<Widget> widgets = <Widget>[];
     const List<int> indexes = <int>[1, 0, 2];
     const List<double> sizes = <double>[35, 33, 30];
-    const List<Color> avatarColor = <Color>[Color(0xFFFFD700), Color(0xFFC0C0C0), Color(0xFF895E1A)];
+    const List<Color> avatarColor = <Color>[
+      Color(0xFFFFD700),
+      Color(0xFFC0C0C0),
+      Color(0xFF895E1A)
+    ];
 
     for (final int idx in indexes) {
       if (contacts != null &&
@@ -104,7 +107,7 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: _renderAvatars(snapshot.data),
                   ),
-                  const SizedBox(height: 21),
+                  const SizedBox(height: 13),
                   Text(
                     'Stats',
                     style: theme.texts.subtitle,
