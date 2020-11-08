@@ -62,8 +62,8 @@ class _ProfilState extends State<Profil> {
     }
   }
 
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+  Future<void> getImage() async {
+    final PickedFile pickedFile = await picker.getImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
@@ -85,12 +85,10 @@ class _ProfilState extends State<Profil> {
               children: <Widget>[
                 Center(
                   child: _image == null
-                      ? const Text('No image selected.')
-                      : Image.file(_image),
+                      ? const Text('No profile image set.')
+                      : CircleAvatar(backgroundImage: Image.file(_image).image, radius: 100,),
                 ),
-                Button(
-                  onPressed: getImage, text: 'photo',
-                ),
+                const SizedBox(height: 15.0),
                 FittedBox(
                   child: Text(
                     'Modify Email',
@@ -170,6 +168,14 @@ class _ProfilState extends State<Profil> {
                         text: 'Modify',
                         onPressed: _validateForm,
                       ),
+                      const SizedBox(height: 8.0),
+                      Button(
+                        text: 'Add Picture',
+                        onPressed: getImage,
+                        backgroundColor: theme.colors.background,
+                        textColor: Colors.white,
+                      ),
+                      const SizedBox(height: 8.0),
                       Button(
                         text: 'Logout',
                         onPressed: () async {
@@ -179,8 +185,8 @@ class _ProfilState extends State<Profil> {
                             ModalRoute.withName('/'),
                           );
                         },
-                        backgroundColor: theme.colors.background,
-                        textColor: Colors.white,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
                       ),
                       const SizedBox(height: 15.0),
                       Text(modifyEmailString,
